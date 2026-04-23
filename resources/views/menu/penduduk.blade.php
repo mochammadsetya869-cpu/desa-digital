@@ -17,14 +17,6 @@
     </a>
     @endif
     @endauth
-    
-    @auth
-    @if(strtolower(trim(auth()->user()->role)) === 'admin')
-    <a href="/penduduk/edit/{{ $p->id }}" class="btn btn-warning btn-sm">
-        Edit
-    </a>
-    @endif
-    @endauth
 
 {{-- CARD --}}
 <div class="row mt-4 g-4">
@@ -218,8 +210,58 @@
     
 </div>
 
-    </form>
-  </div>
+{{-- ===================== DATA PENDUDUK (CRUD) ===================== --}}
+<div class="card mt-4 p-4 shadow-sm">
+
+    <h5>Daftar Penduduk</h5>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>NIK</th>
+                <th>Nama</th>
+                <th>JK</th>
+                <th>Umur</th>
+                <th>Pekerjaan</th>
+
+                @auth
+                @if(strtolower(trim(auth()->user()->role)) === 'admin')
+                <th>Aksi</th>
+                @endif
+                @endauth
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach($data as $p)
+            <tr>
+                <td>{{ $p->nik }}</td>
+                <td>{{ $p->nama }}</td>
+                <td>{{ $p->jenis_kelamin }}</td>
+                <td>{{ \Carbon\Carbon::parse($p->tanggal_lahir)->age }}</td>
+                <td>{{ $p->pekerjaan }}</td>
+
+                @auth
+                @if(strtolower(trim(auth()->user()->role)) === 'admin')
+                <td>
+                    <a href="/penduduk/edit/{{ $p->id }}" class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a href="/penduduk/hapus/{{ $p->id }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Yakin hapus?')">
+                        Hapus
+                    </a>
+                </td>
+                @endif
+                @endauth
+
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
 </div>
 
 </x-app-layout>
