@@ -84,45 +84,6 @@
 
 </div>
 
-    {{-- TABEL --}}
-    <div class="card mt-4 p-3 shadow">
-        <h5>Daftar Penduduk</h5>
-
-        <table class="table mt-3">
-            <thead>
-                <tr>
-
-                    @auth
-                    @if(strtolower(trim(auth()->user()->role)) === 'admin')
-                    <th>Aksi</th>
-                    @endif
-                    @endauth
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach($data as $p)
-                <tr>
-
-                    @auth
-                    @if(strtolower(trim(auth()->user()->role)) === 'admin')
-                    <td>
-                        <a href="/penduduk/edit/{{ $p->id }}" class="btn btn-warning btn-sm">Edit</a>
-
-                        <a href="/penduduk/hapus/{{ $p->id }}"
-                           class="btn btn-danger btn-sm"
-                           onclick="return confirm('Yakin hapus?')">
-                            Hapus
-                        </a>
-                    </td>
-                    @endif
-                    @endauth
-
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
 {{-- ===================== DATA KK ===================== --}}
 <div class="card mt-4 p-4 shadow-sm">
     <h5>Data Kartu Keluarga</h5>
@@ -144,49 +105,54 @@
     </div>
 </div>
 
-<div class="row mt-4">
+<div class="col-md-6">
+    <div class="card p-4 shadow-sm">
+        <h5>Tingkat Pendidikan</h5>
 
-    {{-- PENDIDIKAN --}}
-    <div class="col-md-6">
-        <div class="card p-4 shadow-sm">
-            <h5>Tingkat Pendidikan</h5>
+        @php
+            $sd_persen = $total ? ($sd / $total) * 100 : 0;
+            $smp_persen = $total ? ($smp / $total) * 100 : 0;
+            $sma_persen = $total ? ($sma / $total) * 100 : 0;
+            $diploma_persen = $total ? ($diploma / $total) * 100 : 0;
+        @endphp
 
-            <div class="mt-3">
-                Tidak/Belum Sekolah
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-primary" style="width:40%"></div>
-                </div>
+        <div class="mt-3">
 
-                SD/Sederajat
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-primary"
-                        style="width: {{ $total ? ($sd / $total) * 100 : 0 }}%">
-                    </div>
-                </div>
-
-                SMP/Sederajat
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-primary"
-                        style="width: {{ $total ? ($smp / $total) * 100 : 0 }}%">
-                    </div>
-                </div>
-
-                SMA/Sederajat
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-primary"
-                        style="width: {{ $total ? ($sma / $total) * 100 : 0 }}%">
-                    </div>
-                </div>
-
-                Diploma/Sarjana
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-primary"
-                        style="width: {{ $total ? ($diploma / $total) * 100 : 0 }}%">
-                    </div>
+            {{-- SD --}}
+            SD/Sederajat
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary"
+                     style="width: <?php echo $sd_persen; ?>%;">
                 </div>
             </div>
+
+            {{-- SMP --}}
+            SMP/Sederajat
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary"
+                     style="width: <?php echo $smp_persen; ?>%;">
+                </div>
+            </div>
+
+            {{-- SMA --}}
+            SMA/Sederajat
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary"
+                     style="width: <?php echo $sma_persen; ?>%;">
+                </div>
+            </div>
+
+            {{-- DIPLOMA --}}
+            Diploma/Sarjana
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary"
+                     style="width: <?php echo $diploma_persen; ?>%;">
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 
     {{-- PEKERJAAN --}}
     <div class="col-md-6">
