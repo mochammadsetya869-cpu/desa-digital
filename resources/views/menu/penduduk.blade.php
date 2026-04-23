@@ -17,6 +17,14 @@
     </a>
     @endif
     @endauth
+    
+    @auth
+    @if(strtolower(trim(auth()->user()->role)) === 'admin')
+    <a href="/penduduk/edit/{{ $p->id }}" class="btn btn-warning btn-sm">
+        Edit
+    </a>
+    @endif
+    @endauth
 
 {{-- CARD --}}
 <div class="row mt-4 g-4">

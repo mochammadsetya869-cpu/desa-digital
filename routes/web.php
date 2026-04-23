@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Penduduk;
 use Carbon\Carbon;
 
+
 Route::get('/', function () {
     return view('dashboard');
 });
@@ -169,10 +170,27 @@ Route::get('/penduduk/edit/{id}', function ($id) {
         abort(403);
     }
 
-    $p = Penduduk::find($id);
+      $p = Penduduk::findOrFail($id);
 
     return view('menu.penduduk_edit', compact('p'));
 });
+
+
+Route::post('/penduduk/update/{id}', function (Request $request, $id) {
+
+    $p = Penduduk::findOrFail($id);
+
+    $p->update([
+        'nik' => $request->nik,
+        'nama' => $request->nama,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'pekerjaan' => $request->pekerjaan,
+    ]);
+
+    return redirect('/data-penduduk')->with('success', 'Data berhasil diupdate');
+});
+
 
 
 /* ===== UPDATE ===== */
