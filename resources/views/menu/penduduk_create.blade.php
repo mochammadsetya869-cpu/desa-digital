@@ -22,8 +22,6 @@
 
         <input type="date" name="tanggal_lahir" class="form-control mb-2" required>
 
-        <input type="text" name="pekerjaan" class="form-control mb-2" placeholder="Pekerjaan">
-
         {{-- PENDIDIKAN --}}
         <select name="pendidikan" class="form-control mb-2">
             <option value="">-- Pilih Pendidikan --</option>

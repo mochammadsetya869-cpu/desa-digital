@@ -92,14 +92,14 @@
         <div class="col-md-6">
             <div class="p-3 rounded bg-light d-flex justify-content-between">
                 <span>Jumlah KK</span>
-                <b>724 KK</b>
+                <b>{{ $jumlahKK }} KK</b>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="p-3 rounded bg-light d-flex justify-content-between">
                 <span>Rata-rata anggota</span>
-                <b>3.5 orang</b>
+                <b>{{ $rataAnggota }} orang</b>
             </div>
         </div>
     </div>
@@ -159,36 +159,37 @@
         <div class="card p-4 shadow-sm">
             <h5>Mata Pencaharian</h5>
 
-            <div class="mt-3">
-                Petani
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-success" style="width:70%"></div>
-                </div>
+            @php
+                $petani_p = $total ? ($petani / $total) * 100 : 0;
+                $buruh_p = $total ? ($buruh / $total) * 100 : 0;
+                $wiraswasta_p = $total ? ($wiraswasta / $total) * 100 : 0;
+                $pns_p = $total ? ($pns / $total) * 100 : 0;
+                $tidak_p = $total ? ($tidakKerja / $total) * 100 : 0;
+            @endphp
 
-                Buruh/Karyawan Swasta
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-success" style="width:40%"></div>
-                </div>
+            Petani ({{ $petani }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-success" style="width: {{ $petani_p }}%"></div>
+            </div>
 
-                Wiraswasta
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-success" style="width:30%"></div>
-                </div>
+            Buruh ({{ $buruh }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-success" style="width: {{ $buruh_p }}%"></div>
+            </div>
 
-                PNS/TNI/Polri
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-success" style="width:30%"></div>
-                </div>
+            Wiraswasta ({{ $wiraswasta }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-success" style="width: {{ $wiraswasta_p }}%"></div>
+            </div>
 
-                Pensiunan
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-success" style="width:30%"></div>
-                </div>
+            PNS ({{ $pns }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-success" style="width: {{ $pns_p }}%"></div>
+            </div>
 
-                Belum/Tidak Bekerja
-                <div class="progress mb-2">
-                    <div class="progress-bar bg-success" style="width:30%"></div>
-                </div>
+            Tidak Bekerja ({{ $tidakKerja }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-success" style="width: {{ $tidak_p }}%"></div>
             </div>
         </div>
     </div>
