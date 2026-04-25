@@ -1,5 +1,8 @@
 <x-app-layout>
 
+    <a href="/dashboard" class="btn btn-outline-primary mb-3">
+        ← Kembali ke Beranda
+
 <div class="container mt-4">
 
     <!-- JUDUL -->

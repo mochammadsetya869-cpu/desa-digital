@@ -10,7 +10,7 @@ use App\Http\Controllers\PengajuanController;
 
 use App\Models\ProfilDesa;
 use App\Models\Penduduk;
-
+use App\Http\Controllers\StatusController;
 use Carbon\Carbon;
 
 /*
@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function () {
         return view('menu.arsip');
     });
 
-    Route::get('/status', fn() => view('menu.status'));
+    Route::get('/status', [StatusController::class, 'index']);
     Route::get('/perpindahan', fn() => view('menu.perpindahan'));
 
 
