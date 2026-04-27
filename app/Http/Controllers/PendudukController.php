@@ -22,17 +22,34 @@ class PendudukController extends Controller
         $lansia = $data->filter(fn($p) => now()->diffInYears($p->tanggal_lahir) >= 60)->count();
 
         // ================= PENDIDIKAN =================
-        $sd = $data->filter(fn($p) => strtolower($p->pendidikan) == 'sd')->count();
-        $smp = $data->filter(fn($p) => strtolower($p->pendidikan) == 'smp')->count();
-        $sma = $data->filter(fn($p) => strtolower($p->pendidikan) == 'sma')->count();
-        $diploma = $data->filter(fn($p) => strtolower($p->pendidikan) == 'diploma')->count();
+        $sd = $data->filter(fn($p) =>
+            !empty($p->pendidikan) &&
+            str_contains(strtolower($p->pendidikan), 'sd')
+        )->count();
 
+        $smp = $data->filter(fn($p) =>
+            !empty($p->pendidikan) &&
+            str_contains(strtolower($p->pendidikan), 'smp')
+        )->count();
+
+        $sma = $data->filter(fn($p) =>
+            !empty($p->pendidikan) &&
+            str_contains(strtolower($p->pendidikan), 'sma')
+        )->count();
+
+        $diploma = $data->filter(fn($p) =>
+            !empty($p->pendidikan) &&
+            (
+                str_contains(strtolower($p->pendidikan), 'diploma') ||
+                str_contains(strtolower($p->pendidikan), 'sarjana')
+            )
+        )->count();
 
         // ================= PEKERJAAN =================
         $petani = $data->where('pekerjaan', 'Petani')->count();
         $buruh = $data->where('pekerjaan', 'Buruh')->count();
         $wiraswasta = $data->where('pekerjaan', 'Wiraswasta')->count();
-        $pns = $data->where('pekerjaan', 'PNS')->count();
+        $pns = $data->where('pekerjaan', 'PNS/TNI/Polri')->count();
         $tidakKerja = $data->where('pekerjaan', 'Tidak Bekerja')->count();
 
         // ================= AGAMA =================

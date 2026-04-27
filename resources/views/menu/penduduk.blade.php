@@ -122,7 +122,7 @@
             SD/Sederajat
             <div class="progress mb-2">
                 <div class="progress-bar bg-primary"
-                     style="width: <?php echo $sd_persen; ?>%;">
+                     style="width: {{ $sd_persen }}%;">
                 </div>
             </div>
 
@@ -130,7 +130,7 @@
             SMP/Sederajat
             <div class="progress mb-2">
                 <div class="progress-bar bg-primary"
-                     style="width: <?php echo $smp_persen; ?>%;">
+                     style="width: {{ $smp_persen }}%;">
                 </div>
             </div>
 
@@ -138,7 +138,7 @@
             SMA/Sederajat
             <div class="progress mb-2">
                 <div class="progress-bar bg-primary"
-                     style="width: <?php echo $sma_persen; ?>%;">
+                     style="width: {{ $sma_persen }}%;">
                 </div>
             </div>
 
@@ -146,7 +146,7 @@
             Diploma/Sarjana
             <div class="progress mb-2">
                 <div class="progress-bar bg-primary"
-                     style="width: <?php echo $diploma_persen; ?>%;">
+                    style="width: {{ $diploma_persen }}%;">
                 </div>
             </div>
 
@@ -182,7 +182,7 @@
                 <div class="progress-bar bg-success" style="width: {{ $wiraswasta_p }}%"></div>
             </div>
 
-            PNS ({{ $pns }})
+            PNS/TNI/Polri ({{ $pns }})
             <div class="progress mb-2">
                 <div class="progress-bar bg-success" style="width: {{ $pns_p }}%"></div>
             </div>
@@ -212,6 +212,9 @@
 </div>
 
 {{-- ===================== DATA PENDUDUK (CRUD) ===================== --}}
+@auth
+@if(strtolower(auth()->user()->role) === 'admin')
+
 <div class="card mt-4 p-4 shadow-sm">
 
     <h5>Daftar Penduduk</h5>
@@ -264,5 +267,8 @@
     </table>
 
 </div>
+
+@endif
+@endauth
 
 </x-app-layout>

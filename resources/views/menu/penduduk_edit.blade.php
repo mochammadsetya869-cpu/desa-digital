@@ -20,9 +20,30 @@
             <option value="P" {{ $p->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan</option>
         </select>
 
-        <input type="date" name="tanggal_lahir" value="{{ $p->tanggal_lahir }}" class="form-control mb-2">
+        <select name="pendidikan" class="form-control mb-2">
+            <option {{ $p->pendidikan == 'SD' ? 'selected' : '' }}>SD</option>
+            <option {{ $p->pendidikan == 'SMP' ? 'selected' : '' }}>SMP</option>
+            <option {{ $p->pendidikan == 'SMA' ? 'selected' : '' }}>SMA</option>
+            <option {{ $p->pendidikan == 'Diploma' ? 'selected' : '' }}>Diploma</option>
+            <option {{ $p->pendidikan == 'Sarjana' ? 'selected' : '' }}>Sarjana</option>
+        </select>
 
-        <input type="text" name="pekerjaan" value="{{ $p->pekerjaan }}" class="form-control mb-2">
+        <select name="agama" class="form-control mb-2">
+            <option {{ $p->agama == 'Islam' ? 'selected' : '' }}>Islam</option>
+            <option {{ $p->agama == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+            <option {{ $p->agama == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+            <option {{ $p->agama == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+            <option {{ $p->agama == 'Budha' ? 'selected' : '' }}>Budha</option>
+        </select>
+
+        <select name="pekerjaan" class="form-control">
+            <option>Petani</option>
+            <option>Buruh</option>
+            <option>Wiraswasta</option>
+            <option>PNS/TNI/Polri</option>
+            <option>Pensiunan</option>
+            <option>Belum/Tidak Bekerja</option>
+        </select>
 
         <button class="btn btn-primary">Update</button>
 

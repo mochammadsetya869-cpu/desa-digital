@@ -48,7 +48,6 @@
             <option>PNS/TNI/Polri</option>
             <option>Pensiunan</option>
             <option>Belum/Tidak Bekerja</option>
-            <option>Pelajar/Mahasiswa</option> <!-- INI BARU -->
         </select>
 
         <button class="btn btn-success">Simpan</button>
