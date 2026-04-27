@@ -117,13 +117,26 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::post('/penduduk/store', function (Request $request) {
+
         if (strtolower(Auth::user()->role) !== 'admin') {
             abort(403);
         }
 
-        Penduduk::create($request->all());
+        $request->validate([
+            'nik' => 'required|unique:penduduk,nik',
+        ]);
 
-        return redirect('/data-penduduk')->with('success', 'Data ditambahkan');
+        Penduduk::create([
+            'nik' => $request->nik,
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'pendidikan' => $request->pendidikan,
+            'agama' => $request->agama,
+            'pekerjaan' => $request->pekerjaan,
+        ]);
+
+        return redirect('/data-penduduk')->with('success', 'Data berhasil ditambahkan');
     });
 
 

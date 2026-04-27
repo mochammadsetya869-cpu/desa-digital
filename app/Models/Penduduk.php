@@ -13,6 +13,8 @@ class Penduduk extends Model
         'nama',
         'jenis_kelamin',
         'tanggal_lahir',
+        'pendidikan',
+        'agama',
         'pekerjaan'
     ];
 }

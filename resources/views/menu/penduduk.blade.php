@@ -18,142 +18,127 @@
     @endif
     @endauth
 
-{{-- CARD --}}
-<div class="row mt-4 g-4">
+    {{-- CARD --}}
+    <div class="row mt-4 g-4">
 
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-blue">
-            <div class="card-icon">👥</div>
-            <p>Total Penduduk</p>
-            <h2>{{ $total }}</h2>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-blue">
+                <div class="card-icon">👥</div>
+                <p>Total Penduduk</p>
+                <h2>{{ $total }}</h2>
+            </div>
         </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-cyan">
+                <div class="card-icon">👤</div>
+                <p>Laki-laki</p>
+                <h2>{{ $laki }}</h2>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-pink">
+                <div class="card-icon">👩</div>
+                <p>Perempuan</p>
+                <h2>{{ $perempuan }}</h2>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-green">
+                <div class="card-icon">👶</div>
+                <p>Balita</p>
+                <h2>{{ $balita }}</h2>
+            </div>
+        </div>
+
     </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-cyan">
-            <div class="card-icon">👤</div>
-            <p>Laki-laki</p>
-            <h2>{{ $laki }}</h2>
+    {{-- UMUR --}}
+    <div class="row mt-3 g-4">
+
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-orange">
+                <div class="card-icon">🧒</div>
+                <p>Anak</p>
+                <h2>{{ $anak }}</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-pink">
-            <div class="card-icon">👩</div>
-            <p>Perempuan</p>
-            <h2>{{ $perempuan }}</h2>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-purple">
+                <div class="card-icon">🧑</div>
+                <p>Dewasa</p>
+                <h2>{{ $dewasa }}</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-green">
-            <div class="card-icon">👶</div>
-            <p>Balita</p>
-            <h2>{{ $balita }}</h2>
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-dashboard bg-red">
+                <div class="card-icon">👴</div>
+                <p>Lansia</p>
+                <h2>{{ $lansia }}</h2>
+            </div>
         </div>
+
     </div>
-
-</div>
-
-{{-- UMUR --}}
-<div class="row mt-3 g-4">
-
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-orange">
-            <div class="card-icon">🧒</div>
-            <p>Anak</p>
-            <h2>{{ $anak }}</h2>
-        </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-purple">
-            <div class="card-icon">🧑</div>
-            <p>Dewasa</p>
-            <h2>{{ $dewasa }}</h2>
-        </div>
-    </div>
-
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="card-dashboard bg-red">
-            <div class="card-icon">👴</div>
-            <p>Lansia</p>
-            <h2>{{ $lansia }}</h2>
-        </div>
-    </div>
-
-</div>
 
 {{-- ===================== DATA KK ===================== --}}
-<div class="card mt-4 p-4 shadow-sm">
-    <h5>Data Kartu Keluarga</h5>
+    <div class="card mt-4 p-4 shadow-sm">
+        <h5>Data Kartu Keluarga</h5>
 
-    <div class="row mt-3">
-        <div class="col-md-6">
-            <div class="p-3 rounded bg-light d-flex justify-content-between">
-                <span>Jumlah KK</span>
-                <b>{{ $jumlahKK }} KK</b>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="p-3 rounded bg-light d-flex justify-content-between">
-                <span>Rata-rata anggota</span>
-                <b>{{ $rataAnggota }} orang</b>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-6">
-    <div class="card p-4 shadow-sm">
-        <h5>Tingkat Pendidikan</h5>
-
-        @php
-            $sd_persen = $total ? ($sd / $total) * 100 : 0;
-            $smp_persen = $total ? ($smp / $total) * 100 : 0;
-            $sma_persen = $total ? ($sma / $total) * 100 : 0;
-            $diploma_persen = $total ? ($diploma / $total) * 100 : 0;
-        @endphp
-
-        <div class="mt-3">
-
-            {{-- SD --}}
-            SD/Sederajat
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary"
-                     style="width: {{ $sd_persen }}%;">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="p-3 rounded bg-light d-flex justify-content-between">
+                    <span>Jumlah KK</span>
+                    <b>{{ $jumlahKK }} KK</b>
                 </div>
             </div>
 
-            {{-- SMP --}}
-            SMP/Sederajat
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary"
-                     style="width: {{ $smp_persen }}%;">
+            <div class="col-md-6">
+                <div class="p-3 rounded bg-light d-flex justify-content-between">
+                    <span>Rata-rata anggota</span>
+                    <b>{{ $rataAnggota }} orang</b>
                 </div>
             </div>
-
-            {{-- SMA --}}
-            SMA/Sederajat
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary"
-                     style="width: {{ $sma_persen }}%;">
-                </div>
-            </div>
-
-            {{-- DIPLOMA --}}
-            Diploma/Sarjana
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary"
-                    style="width: {{ $diploma_persen }}%;">
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
 
+    <div class="col-md-6">
+        <div class="card p-4 shadow-sm">
+            <h5>Tingkat Pendidikan</h5>
+
+            @php
+                $sd_p = $total ? ($sd / $total) * 100 : 0;
+                $smp_p = $total ? ($smp / $total) * 100 : 0;
+                $sma_p = $total ? ($sma / $total) * 100 : 0;
+                $diploma_p = $total ? ($diploma / $total) * 100 : 0;
+            @endphp
+
+            SD/Sederajat ({{ $sd }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary" style="width: {{ $sd_p }}%"></div>
+            </div>
+
+            SMP/Sederajat ({{ $smp }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary" style="width: {{ $smp_p }}%"></div>
+            </div>
+
+            SMA/Sederajat ({{ $sma }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary" style="width: {{ $sma_p }}%"></div>
+            </div>
+
+            Diploma/Sarjana ({{ $diploma }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary" style="width: {{ $diploma_p }}%"></div>
+            </div>
+
+        </div>
+
+    </div>
     {{-- PEKERJAAN --}}
     <div class="col-md-6">
         <div class="card p-4 shadow-sm">
@@ -191,10 +176,14 @@
             <div class="progress mb-2">
                 <div class="progress-bar bg-success" style="width: {{ $tidak_p }}%"></div>
             </div>
+
+            Pensiunan ({{ $pensiunan }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-success" style="width: {{ $pensiunan }}%"></div>
+            </div>
+
         </div>
     </div>
-
-</div>
 
 <div class="card mt-4 p-4 shadow-sm">
     <h5>Data Agama</h5>

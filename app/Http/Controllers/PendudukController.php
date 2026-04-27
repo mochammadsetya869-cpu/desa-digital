@@ -16,34 +16,43 @@ class PendudukController extends Controller
         $perempuan = $data->where('jenis_kelamin', 'P')->count();
 
         // ================= UMUR =================
-        $balita = $data->filter(fn($p) => now()->diffInYears($p->tanggal_lahir) <= 5)->count();
-        $anak = $data->filter(fn($p) => now()->diffInYears($p->tanggal_lahir) >= 6 && now()->diffInYears($p->tanggal_lahir) <= 17)->count();
-        $dewasa = $data->filter(fn($p) => now()->diffInYears($p->tanggal_lahir) >= 18 && now()->diffInYears($p->tanggal_lahir) <= 59)->count();
-        $lansia = $data->filter(fn($p) => now()->diffInYears($p->tanggal_lahir) >= 60)->count();
+        $balita = 0;
+        $anak = 0;
+        $dewasa = 0;
+        $lansia = 0;
 
+        foreach ($data as $p) {
+            $umur = \Carbon\Carbon::parse($p->tanggal_lahir)->age;
+
+            if ($umur <= 5) {
+                $balita++;
+            } elseif ($umur <= 17) {
+                $anak++;
+            } elseif ($umur <= 59) {
+                $dewasa++;
+            } else {
+                $lansia++;
+            }
+        }
         // ================= PENDIDIKAN =================
         $sd = $data->filter(fn($p) =>
-            !empty($p->pendidikan) &&
-            str_contains(strtolower($p->pendidikan), 'sd')
+            str_contains(strtolower(trim($p->pendidikan ?? '')), 'sd')
         )->count();
 
         $smp = $data->filter(fn($p) =>
-            !empty($p->pendidikan) &&
-            str_contains(strtolower($p->pendidikan), 'smp')
+            str_contains(strtolower(trim($p->pendidikan ?? '')), 'smp')
         )->count();
 
         $sma = $data->filter(fn($p) =>
-            !empty($p->pendidikan) &&
-            str_contains(strtolower($p->pendidikan), 'sma')
+            str_contains(strtolower(trim($p->pendidikan ?? '')), 'sma')
         )->count();
+        
+        $diploma = $data->filter(function ($p) {
+            $pendidikan = strtolower(trim($p->pendidikan ?? ''));
 
-        $diploma = $data->filter(fn($p) =>
-            !empty($p->pendidikan) &&
-            (
-                str_contains(strtolower($p->pendidikan), 'diploma') ||
-                str_contains(strtolower($p->pendidikan), 'sarjana')
-            )
-        )->count();
+            return str_contains($pendidikan, 'diploma') ||
+                str_contains($pendidikan, 'sarjana');
+        })->count();
 
         // ================= PEKERJAAN =================
         $petani = $data->where('pekerjaan', 'Petani')->count();
@@ -51,6 +60,8 @@ class PendudukController extends Controller
         $wiraswasta = $data->where('pekerjaan', 'Wiraswasta')->count();
         $pns = $data->where('pekerjaan', 'PNS/TNI/Polri')->count();
         $tidakKerja = $data->where('pekerjaan', 'Tidak Bekerja')->count();
+        $pensiunan = $data->where('pekerjaan', 'Pensiunan')->count();
+
 
         // ================= AGAMA =================
         $islam = $data->filter(fn($p) => strtolower($p->agama) == 'islam')->count();
@@ -72,7 +83,7 @@ class PendudukController extends Controller
             'sd','smp','sma','diploma',
 
             // pekerjaan
-            'petani','buruh','wiraswasta','pns','tidakKerja',
+            'petani','buruh','wiraswasta','pns','tidakKerja', 'pensiunan',
 
             // agama
             'islam','kristen','katolik','hindu','budha',
