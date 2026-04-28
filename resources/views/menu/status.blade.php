@@ -1,40 +1,42 @@
 <x-app-layout>
 
+<a href="/dashboard" class="btn btn-outline-primary mb-3">
+        ← Kembali ke Beranda
+    </a>
+    
 <div class="container mt-4">
 
-    <h3>Status Pengajuan Saya</h3>
+    <h3>Status Pengajuan</h3>
 
     <table class="table mt-3">
         <thead>
             <tr>
-                <th>Jenis Surat</th>
                 <th>Nama</th>
+                <th>Surat</th>
+                <th>Keterangan</th>
                 <th>Status</th>
             </tr>
         </thead>
 
         <tbody>
-            @forelse($data as $p)
+            @foreach($data as $d)
             <tr>
-                <td>{{ $p->jenis_surat }}</td>
-                <td>{{ $p->nama }}</td>
+                <td>{{ $d->nama }}</td>
+                <td>{{ $d->jenis_surat }}</td>
+                <td>{{ $d->keterangan }}</td>
 
                 <td>
-                    @if($p->status == 'Diproses')
-                        <span class="badge bg-warning">Diproses</span>
-                    @elseif($p->status == 'Disetujui')
-                        <span class="badge bg-success">Disetujui</span>
+                    @if($d->status == 'pending')
+                        <span class="badge bg-warning">Pending</span>
+                    @elseif($d->status == 'diproses')
+                        <span class="badge bg-primary">Diproses</span>
                     @else
-                        <span class="badge bg-danger">Ditolak</span>
+                        <span class="badge bg-success">Selesai</span>
                     @endif
                 </td>
 
             </tr>
-            @empty
-            <tr>
-                <td colspan="3">Belum ada pengajuan</td>
-            </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
 

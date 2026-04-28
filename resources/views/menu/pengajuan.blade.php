@@ -2,6 +2,7 @@
 
     <a href="/dashboard" class="btn btn-outline-primary mb-3">
         ← Kembali ke Beranda
+    </a>
 
 <div class="container mt-4">
 

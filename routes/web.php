@@ -8,10 +8,12 @@ use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengajuanController;
 
+
 use App\Models\ProfilDesa;
 use App\Models\Penduduk;
 use App\Http\Controllers\StatusController;
 use Carbon\Carbon;
+use App\Models\Pengajuan;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,3 +178,74 @@ Route::middleware('auth')->group(function () {
     });
 
 });
+
+Route::post('/pengajuan/store', function (Request $request) {
+
+    \App\Models\Pengajuan::create([
+        'user_id' => Auth::id(),
+        'nama' => $request->nama,
+        'nik' => $request->nik,
+        'jenis_surat' => $request->jenis_surat,
+        'keterangan' => $request->keterangan,
+        'status' => 'pending',
+    ]);
+
+    return redirect('/pengajuan')->with('success', 'Pengajuan berhasil');
+});
+
+Route::get('/status', function () {
+
+    $data = \App\Models\Pengajuan::where('user_id', Auth::id())->get();
+
+    return view('menu.status', compact('data'));
+});
+
+
+Route::get('/pengajuan/setuju/{id}', function ($id) {
+
+    if (strtolower(Auth::user()->role) !== 'admin') {
+        abort(403);
+    }
+
+    $p = \App\Models\Pengajuan::findOrFail($id);
+
+    $p->update([
+        'status' => 'diproses'
+    ]);
+
+    return back()->with('success', 'Pengajuan disetujui');
+});
+
+Route::get('/pengajuan/tolak/{id}', function ($id) {
+
+    if (strtolower(Auth::user()->role) !== 'admin') {
+        abort(403);
+    }
+
+    $p = \App\Models\Pengajuan::findOrFail($id);
+
+    $p->update([
+        'status' => 'ditolak'
+    ]);
+
+    return back()->with('success', 'Pengajuan ditolak');
+});
+
+Route::get('/pengajuan/selesai/{id}', function ($id) {
+
+    if (strtolower(Auth::user()->role) !== 'admin') {
+        abort(403);
+    }
+
+    $p = \App\Models\Pengajuan::findOrFail($id);
+
+    $p->update([
+        'status' => 'selesai'
+    ]);
+
+    return back();
+});
+
+
+
+
