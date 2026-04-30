@@ -29,8 +29,33 @@
                 <td>{{ $p->status }}</td>
 
                 <td>
-                    <a href="/pengajuan/setuju/{{ $p->id }}" class="btn btn-success btn-sm">Setujui</a>
-                    <a href="/pengajuan/tolak/{{ $p->id }}" class="btn btn-danger btn-sm">Tolak</a>
+
+                    @if($p->status == 'pending')
+
+                        <a href="/pengajuan/setuju/{{ $p->id }}" class="btn btn-success btn-sm">
+                            Setujui
+                        </a>
+
+                        <a href="/pengajuan/tolak/{{ $p->id }}" class="btn btn-danger btn-sm">
+                            Tolak
+                        </a>
+
+                    @elseif($p->status == 'diproses')
+
+                        <a href="/pengajuan/selesai/{{ $p->id }}" class="btn btn-primary btn-sm">
+                            Selesai
+                        </a>
+
+                    @elseif($p->status == 'selesai')
+
+                        <span class="badge bg-success">Sudah Selesai</span>
+
+                    @elseif($p->status == 'ditolak')
+
+                        <span class="badge bg-danger">Ditolak</span>
+
+                    @endif
+
                 </td>
             </tr>
             @endforeach

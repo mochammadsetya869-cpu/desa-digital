@@ -193,14 +193,6 @@ Route::post('/pengajuan/store', function (Request $request) {
     return redirect('/pengajuan')->with('success', 'Pengajuan berhasil');
 });
 
-Route::get('/status', function () {
-
-    $data = \App\Models\Pengajuan::where('user_id', Auth::id())->get();
-
-    return view('menu.status', compact('data'));
-});
-
-
 Route::get('/pengajuan/setuju/{id}', function ($id) {
 
     if (strtolower(Auth::user()->role) !== 'admin') {

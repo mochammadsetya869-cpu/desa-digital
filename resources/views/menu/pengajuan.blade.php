@@ -1,44 +1,48 @@
 <x-app-layout>
 
-    <a href="/dashboard" class="btn btn-outline-primary mb-3">
-        ← Kembali ke Beranda
-    </a>
+<a href="/dashboard" class="btn btn-outline-primary mb-3">
+    ← Kembali ke Beranda
+</a>
 
-<div class="container mt-4">
+<div class="container mt-4" style="max-width:600px;">
 
-    <!-- JUDUL -->
     <div class="text-center mb-4">
         <h2>Pengajuan Surat</h2>
         <p>Ajukan permohonan pembuatan dokumen kependudukan</p>
     </div>
 
-    <!-- FORM -->
+    {{-- STEP 1: PILIH JENIS --}}
     <div class="card p-4 shadow-sm">
+
+        <form method="GET" action="/pengajuan">
+            <label>Jenis Dokumen *</label>
+
+            <select name="jenis" class="form-control" onchange="this.form.submit()">
+               <option value="">Pilih jenis dokumen</option> 
+               <option value="KTP">Kartu Tanda Penduduk (KTP)</option> 
+               <option value="KK">Kartu Keluarga (KK)</option> 
+               <option value="SKTM">Surat Keterangan Tidak Mampu</option> 
+               <option value="Slip Gaji">Surat Penghasilan / Slip Gaji</option> 
+               <option value="Kematian">Akta Kematian</option> 
+               <option value="Usaha">Surat Keterangan Usaha</option> 
+               <option value="Domisili">Surat Domisili</option>
+            </select>
+        </form>
+
+    </div>
+
+    {{-- STEP 2: FORM MUNCUL --}}
+    @if($jenis)
+    <div class="card p-4 shadow-sm mt-4">
+
+        <h5>Form {{ $jenis }}</h5>
 
         <form action="/pengajuan/store" method="POST">
             @csrf
 
-            {{-- ================== JENIS SURAT ================== --}}
-            <div class="mb-3">
-                <label>Jenis Dokumen *</label>
-                <select name="jenis_surat" class="form-control" required>
-                    <option value="">Pilih jenis dokumen</option>
-                    <option value="KTP">Kartu Tanda Penduduk (KTP)</option>
-                    <option value="KK">Kartu Keluarga (KK)</option>
-                    <option value="SKTM">Surat Keterangan Tidak Mampu</option>
-                    <option value="Slip Gaji">Surat Penghasilan / Slip Gaji</option>
-                    <option value="Kematian">Akta Kematian</option>
-                    <option value="Usaha">Surat Keterangan Usaha</option>
-                    <option value="Domisili">Surat Domisili</option>
-                </select>
-            </div>
+            <input type="hidden" name="jenis_surat" value="{{ $jenis }}">
 
-            <hr>
-
-            {{-- ================== DATA PEMOHON ================== --}}
-            <h5>Data Pemohon</h5>
-
-            <div class="mb-3">
+           <div class="mb-3">
                 <label>NIK *</label>
                 <input type="text" name="nik" class="form-control" placeholder="Masukkan 16 digit NIK" required>
             </div>
@@ -92,35 +96,33 @@
             </div>
 
             {{-- ================== KETERANGAN TAMBAHAN ================== --}}
-            <div class="mb-3" id="keteranganBox" style="display:none;">
+            @if($jenis == 'SKTM' || $jenis == 'Usaha')
+            <div class="mb-3">
                 <label>Keterangan Tambahan</label>
-                <textarea name="keterangan" class="form-control" rows="3"></textarea>
+                <textarea name="keterangan" class="form-control"></textarea>
             </div>
+            @endif
 
             {{-- ================== BUTTON ================== --}}
             <div class="d-flex justify-content-between mt-4">
                 <a href="/data-penduduk" class="btn btn-secondary">Batal</a>
                 <button type="submit" class="btn btn-primary">Ajukan Permohonan</button>
             </div>
-
         </form>
 
     </div>
+    @endif
+
+    <div class="card p-3 mt-4 bg-light">
+        <h6>Informasi Penting</h6>
+        <ul style="font-size:14px;">
+            <li>Pastikan data sesuai dokumen asli</li>
+            <li>Proses 3-5 hari kerja</li>
+            <li>Status bisa dilihat di menu Status</li>
+            <li>Ambil di kantor desa setelah selesai</li>
+        </ul>
+    </div>
 
 </div>
-
-{{-- ================== SCRIPT (BIAR DINAMIS) ================== --}}
-<script>
-    const jenis = document.querySelector('[name="jenis_surat"]');
-    const ketBox = document.getElementById('keteranganBox');
-
-    jenis.addEventListener('change', function() {
-        if(this.value === 'SKTM' || this.value === 'Usaha'){
-            ketBox.style.display = 'block';
-        } else {
-            ketBox.style.display = 'none';
-        }
-    });
-</script>
 
 </x-app-layout>

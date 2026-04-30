@@ -12,14 +12,16 @@ class PengajuanController extends Controller
 {
 
 
-public function index()
+public function index(Request $request)
 {
     if(Auth::user()->role == 'admin'){
-        $data = \App\Models\Pengajuan::all();
+        $data = Pengajuan::all();
         return view('menu.pengajuan_admin', compact('data'));
     }
 
-    return view('menu.pengajuan');
+    $jenis = $request->jenis; // ← ini penting
+
+    return view('menu.pengajuan', compact('jenis'));
 }
     
     public function store(Request $request)

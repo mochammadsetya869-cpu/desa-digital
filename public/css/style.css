@@ -691,3 +691,110 @@ button.btn-success:hover {
     text-align: center;
     font-weight: bold;
 }
+
+/* Status */
+
+/* WRAPPER */
+.summary-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* BOX */
+.summary-box {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* WARNA */
+.summary-box.proses {
+    background: #f5edc8;
+}
+
+.summary-box.verifikasi {
+    background: #dce6f5;
+}
+
+.summary-box.selesai {
+    background: #d9f2e3;
+}
+
+.summary-box.ditolak {
+    background: #f8d7da;
+}
+
+/* ANGKA */
+.summary-box h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* TEXT */
+.summary-box p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* CARD */
+.custom-card {
+    border-radius: 12px;
+}
+
+/* KETERANGAN BOX */
+.keterangan-box {
+    background: #eef3f8;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* BADGE */
+.badge-proses {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.badge-verifikasi {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.badge-selesai {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.badge-ditolak {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.info-status {
+    padding: 20px;
+    border-radius: 12px;
+    background: #eef3f8;
+}
+
+/* ITEM */
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
+.status-item p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* ICON */
+.icon {
+    font-size: 16px;
+}

@@ -259,5 +259,12 @@
 
 @endif
 @endauth
+<div class="card p-3 mt-4 bg-light">
+        <h6>Catatan</h6>
+        <ul style="font-size:14px;">
+            <li>Data penduduk ini diperbarui secara berkala setiap bulan berdasarkan laporan dari RT/RW dan hasil pendataan perangkat desa.
+                 Untuk informasi lebih detail, silakan hubungi Kantor Desa Leuwigede.</li>
+        </ul>
+    </div>
 
 </x-app-layout>
