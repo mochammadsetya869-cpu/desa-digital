@@ -63,7 +63,7 @@ class PendudukController extends Controller
         $buruh = $data->where('pekerjaan', 'Buruh')->count();
         $wiraswasta = $data->where('pekerjaan', 'Wiraswasta')->count();
         $pns = $data->where('pekerjaan', 'PNS/TNI/Polri')->count();
-        $tidakKerja = $data->where('pekerjaan', 'Tidak Bekerja')->count();
+        $belum = $data->where('pekerjaan', 'Belum')->count();
         $pensiunan = $data->where('pekerjaan', 'Pensiunan')->count();
 
 
@@ -87,7 +87,7 @@ class PendudukController extends Controller
             'tidak','sd','smp','sma','diploma',
 
             // pekerjaan
-            'petani','buruh','wiraswasta','pns','tidakKerja', 'pensiunan',
+            'petani','buruh','wiraswasta','pns','belum', 'pensiunan',
 
             // agama
             'islam','kristen','katolik','hindu','budha',

@@ -1,113 +1,106 @@
 <x-app-layout>
 
-<div class="container mt-4">
+<div class="data-wrapper">
 
-    <a href="/dashboard" class="btn btn-outline-primary mb-3">
+    <a href="/dashboard" class="kembali-link">
         ← Kembali ke Beranda
     </a>
 
-    <h2 class="text-center fw-bold">Data Penduduk</h2>
-    <p class="text-center text-muted">Desa Leuwigede</p>
+    {{-- HEADER --}}
+    <div class="data-header">
+        <h1>Data Penduduk</h1>
+        <p>Desa Leuwigede, Kabupaten Indramayu</p>
+        <p>Data per {{ now()->translatedFormat('d F Y') }}</p>
+    </div>
 
-    {{-- TOMBOL TAMBAH --}}
+    {{-- BUTTON TAMBAH --}}
     @auth
     @if(strtolower(trim(auth()->user()->role)) === 'admin')
-    <a href="/penduduk/create" class="btn btn-success mb-3">
-        + Tambah Penduduk
-    </a>
+
+    <div style="margin-bottom:30px;">
+        <a href="/penduduk/create" class="btn-simpan">
+            + Tambah Penduduk
+        </a>
+    </div>
+
     @endif
     @endauth
 
-    {{-- CARD --}}
-    <div class="row mt-4 g-4">
+    {{-- CARD STATISTIK --}}
+    <div class="stat-grid">
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-blue">
-                <div class="card-icon">👥</div>
-                <p>Total Penduduk</p>
-                <h2>{{ $total }}</h2>
-            </div>
+        <div class="stat-card bg-blue">
+            <div class="stat-icon">👥</div>
+            <div class="stat-title">Total Penduduk</div>
+            <div class="stat-number">{{ $total }}</div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-cyan">
-                <div class="card-icon">👤</div>
-                <p>Laki-laki</p>
-                <h2>{{ $laki }}</h2>
-            </div>
+        <div class="stat-card bg-cyan">
+            <div class="stat-icon">👨</div>
+            <div class="stat-title">Laki-laki</div>
+            <div class="stat-number">{{ $laki }}</div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-pink">
-                <div class="card-icon">👩</div>
-                <p>Perempuan</p>
-                <h2>{{ $perempuan }}</h2>
-            </div>
+        <div class="stat-card bg-pink">
+            <div class="stat-icon">👩</div>
+            <div class="stat-title">Perempuan</div>
+            <div class="stat-number">{{ $perempuan }}</div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-green">
-                <div class="card-icon">👶</div>
-                <p>Balita</p>
-                <h2>{{ $balita }}</h2>
-            </div>
+        <div class="stat-card bg-green">
+            <div class="stat-icon">👶</div>
+            <div class="stat-title">Balita (0-5 tahun)</div>
+            <div class="stat-number">{{ $balita }}</div>
         </div>
 
-    </div>
-
-    {{-- UMUR --}}
-    <div class="row mt-3 g-4">
-
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-orange">
-                <div class="card-icon">🧒</div>
-                <p>Anak</p>
-                <h2>{{ $anak }}</h2>
-            </div>
+        <div class="stat-card bg-orange">
+            <div class="stat-icon">🧒</div>
+            <div class="stat-title">Anak-anak</div>
+            <div class="stat-number">{{ $anak }}</div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-purple">
-                <div class="card-icon">🧑</div>
-                <p>Dewasa</p>
-                <h2>{{ $dewasa }}</h2>
-            </div>
+        <div class="stat-card bg-purple">
+            <div class="stat-icon">🧑</div>
+            <div class="stat-title">Dewasa</div>
+            <div class="stat-number">{{ $dewasa }}</div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <div class="card-dashboard bg-red">
-                <div class="card-icon">👴</div>
-                <p>Lansia</p>
-                <h2>{{ $lansia }}</h2>
-            </div>
+        <div class="stat-card bg-red">
+            <div class="stat-icon">👴</div>
+            <div class="stat-title">Lansia</div>
+            <div class="stat-number">{{ $lansia }}</div>
         </div>
 
     </div>
 
-{{-- ===================== DATA KK ===================== --}}
-    <div class="card mt-4 p-4 shadow-sm">
-        <h5>Data Kartu Keluarga</h5>
+    {{-- DATA KK --}}
+    <div class="section-card">
 
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <div class="p-3 rounded bg-light d-flex justify-content-between">
-                    <span>Jumlah KK</span>
-                    <b>{{ $jumlahKK }} KK</b>
-                </div>
+        <h2>Data Kartu Keluarga</h2>
+
+        <div class="kk-grid">
+
+            <div class="kk-box">
+                <strong>Jumlah Kepala Keluarga</strong>
+                <span>{{ $jumlahKK }} KK</span>
             </div>
 
-            <div class="col-md-6">
-                <div class="p-3 rounded bg-light d-flex justify-content-between">
-                    <span>Rata-rata anggota</span>
-                    <b>{{ $rataAnggota }} orang</b>
-                </div>
+            <div class="kk-box">
+                <strong>Rata-rata Anggota per KK</strong>
+                <span>{{ $rataAnggota }} orang</span>
             </div>
+
         </div>
+
     </div>
 
-    <div class="col-md-6">
-        <div class="card p-4 shadow-sm">
-            <h5>Tingkat Pendidikan</h5>
+    {{-- PENDIDIKAN + PEKERJAAN --}}
+    <div class="two-column">
+
+        {{-- PENDIDIKAN --}}
+        <div class="section-card">
+
+            <h2>Tingkat Pendidikan</h2>
 
             @php
                 $tidak_p = $total ? ($tidak / $total) * 100 : 0;
@@ -117,160 +110,250 @@
                 $diploma_p = $total ? ($diploma / $total) * 100 : 0;
             @endphp
 
-            Tidak/Belum Sekolah ({{ $tidak }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary" style="width: {{ $tidak_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Tidak/Belum Sekolah</span>
+                    <strong>{{ $tidak }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill" style="width: {{ $tidak_p }}%"></div>
+                </div>
             </div>
 
-            SD/Sederajat ({{ $sd }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary" style="width: {{ $sd_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>SD/Sederajat</span>
+                    <strong>{{ $sd }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill" style="width: {{ $sd_p }}%"></div>
+                </div>
             </div>
 
-            SMP/Sederajat ({{ $smp }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary" style="width: {{ $smp_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>SMP/Sederajat</span>
+                    <strong>{{ $smp }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill" style="width: {{ $smp_p }}%"></div>
+                </div>
             </div>
 
-            SMA/Sederajat ({{ $sma }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary" style="width: {{ $sma_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>SMA/Sederajat</span>
+                    <strong>{{ $sma }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill" style="width: {{ $sma_p }}%"></div>
+                </div>
             </div>
 
-            Diploma/Sarjana ({{ $diploma }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-primary" style="width: {{ $diploma_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Diploma/Sarjana</span>
+                    <strong>{{ $diploma }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill" style="width: {{ $diploma_p }}%"></div>
+                </div>
             </div>
 
         </div>
 
-    </div>
-    {{-- PEKERJAAN --}}
-    <div class="col-md-6">
-        <div class="card p-4 shadow-sm">
-            <h5>Mata Pencaharian</h5>
+        {{-- PEKERJAAN --}}
+        <div class="section-card">
+
+            <h2>Mata Pencaharian</h2>
 
             @php
                 $petani_p = $total ? ($petani / $total) * 100 : 0;
                 $buruh_p = $total ? ($buruh / $total) * 100 : 0;
                 $wiraswasta_p = $total ? ($wiraswasta / $total) * 100 : 0;
                 $pns_p = $total ? ($pns / $total) * 100 : 0;
-                $tidak_p = $total ? ($tidakKerja / $total) * 100 : 0;
+                $belum_p = $total ? ($belum / $total) * 100 : 0;
+                $pensiunan_p = $total ? ($pensiunan / $total) * 100 : 0;
             @endphp
 
-            Petani ({{ $petani }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-success" style="width: {{ $petani_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Petani</span>
+                    <strong>{{ $petani }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill progress-green" style="width: {{ $petani_p }}%"></div>
+                </div>
             </div>
 
-            Buruh ({{ $buruh }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-success" style="width: {{ $buruh_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Buruh/Karyawan</span>
+                    <strong>{{ $buruh }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill progress-green" style="width: {{ $buruh_p }}%"></div>
+                </div>
             </div>
 
-            Wiraswasta ({{ $wiraswasta }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-success" style="width: {{ $wiraswasta_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Wiraswasta</span>
+                    <strong>{{ $wiraswasta }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill progress-green" style="width: {{ $wiraswasta_p }}%"></div>
+                </div>
             </div>
 
-            PNS/TNI/Polri ({{ $pns }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-success" style="width: {{ $pns_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>PNS/TNI/Polri</span>
+                    <strong>{{ $pns }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill progress-green" style="width: {{ $pns_p }}%"></div>
+                </div>
             </div>
 
-            Tidak Bekerja ({{ $tidakKerja }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-success" style="width: {{ $tidak_p }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Belum/Tidak Bekerja</span>
+                    <strong>{{ $belum }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill progress-green" style="width: {{ $belum_p }}%"></div>
+                </div>
             </div>
 
-            Pensiunan ({{ $pensiunan }})
-            <div class="progress mb-2">
-                <div class="progress-bar bg-success" style="width: {{ $pensiunan }}%"></div>
+            <div class="progress-item">
+                <div class="progress-top">
+                    <span>Pensiunan</span>
+                    <strong>{{ $pensiunan }}</strong>
+                </div>
+                <div class="progress-bar-custom">
+                    <div class="progress-fill progress-green" style="width: {{ $pensiunan_p }}%"></div>
+                </div>
             </div>
 
         </div>
+
     </div>
 
-<div class="card mt-4 p-4 shadow-sm">
-    <h5>Data Agama</h5>
+    {{-- DATA AGAMA --}}
+    <div class="section-card">
 
-        <div class="row text-center">
+        <h2>Data Agama</h2>
 
-            <div class="col">Islam<br><b>{{ $islam }}</b></div>
-            <div class="col">Kristen<br><b>{{ $kristen }}</b></div>
-            <div class="col">Katolik<br><b>{{ $katolik }}</b></div>
-            <div class="col">Hindu<br><b>{{ $hindu }}</b></div>
-            <div class="col">Budha<br><b>{{ $budha }}</b></div>
+        <div class="agama-grid">
+
+            <div class="agama-box" style="background:#dcfce7;">
+                <h4>Islam</h4>
+                <span style="color:#15803d;">{{ $islam }}</span>
+            </div>
+
+            <div class="agama-box" style="background:#dbeafe;">
+                <h4>Kristen</h4>
+                <span style="color:#2563eb;">{{ $kristen }}</span>
+            </div>
+
+            <div class="agama-box" style="background:#f3e8ff;">
+                <h4>Katolik</h4>
+                <span style="color:#9333ea;">{{ $katolik }}</span>
+            </div>
+
+            <div class="agama-box" style="background:#fef3c7;">
+                <h4>Hindu</h4>
+                <span style="color:#d97706;">{{ $hindu }}</span>
+            </div>
+
+            <div class="agama-box" style="background:#fef9c3;">
+                <h4>Budha</h4>
+                <span style="color:#ca8a04;">{{ $budha }}</span>
+            </div>
 
         </div>
-    
-</div>
 
-{{-- ===================== DATA PENDUDUK (CRUD) ===================== --}}
-@auth
-@if(strtolower(auth()->user()->role) === 'admin')
-
-<div class="card mt-4 p-4 shadow-sm">
-
-    <h5>Daftar Penduduk</h5>
-
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th>NIK</th>
-                <th>Nama</th>
-                <th>JK</th>
-                <th>Umur</th>
-                <th>Pekerjaan</th>
-
-                @auth
-                @if(strtolower(trim(auth()->user()->role)) === 'admin')
-                <th>Aksi</th>
-                @endif
-                @endauth
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach($data as $p)
-            <tr>
-                <td>{{ $p->nik }}</td>
-                <td>{{ $p->nama }}</td>
-                <td>{{ $p->jenis_kelamin }}</td>
-                <td>{{ \Carbon\Carbon::parse($p->tanggal_lahir)->age }}</td>
-                <td>{{ $p->pekerjaan }}</td>
-
-                @auth
-                @if(strtolower(trim(auth()->user()->role)) === 'admin')
-                <td>
-                    <a href="/penduduk/edit/{{ $p->id }}" class="btn btn-warning btn-sm">
-                        Edit
-                    </a>
-
-                    <a href="/penduduk/hapus/{{ $p->id }}"
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Yakin hapus?')">
-                        Hapus
-                    </a>
-                </td>
-                @endif
-                @endauth
-
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-</div>
-
-@endif
-@endauth
-<div class="card p-3 mt-4 bg-light">
-        <h6>Catatan</h6>
-        <ul style="font-size:14px;">
-            <li>Data penduduk ini diperbarui secara berkala setiap bulan berdasarkan laporan dari RT/RW dan hasil pendataan perangkat desa.
-                 Untuk informasi lebih detail, silakan hubungi Kantor Desa Leuwigede.</li>
-        </ul>
     </div>
+
+    {{-- DAFTAR PENDUDUK --}}
+    @auth
+    @if(strtolower(trim(auth()->user()->role)) === 'admin')
+
+    <div class="section-card">
+
+        <h2>Daftar Penduduk</h2>
+
+        <div style="overflow-x:auto;">
+
+            <table class="pengajuan-table">
+
+                <thead>
+                    <tr>
+                        <th>NIK</th>
+                        <th>Nama</th>
+                        <th>JK</th>
+                        <th>Umur</th>
+                        <th>Pekerjaan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach($data as $p)
+
+                    <tr>
+
+                        <td>{{ $p->nik }}</td>
+                        <td>{{ $p->nama }}</td>
+                        <td>{{ $p->jenis_kelamin }}</td>
+                        <td>{{ \Carbon\Carbon::parse($p->tanggal_lahir)->age }}</td>
+                        <td>{{ $p->pekerjaan }}</td>
+
+                        <td class="aksi">
+
+                            <a href="/penduduk/edit/{{ $p->id }}"
+                               class="btn-setuju">
+                                Edit
+                            </a>
+
+                            <a href="/penduduk/hapus/{{ $p->id }}"
+                               class="btn-tolak"
+                               onclick="return confirm('Yakin hapus?')">
+                                Hapus
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    @endforeach
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    @endif
+    @endauth
+
+    {{-- CATATAN --}}
+    <div class="note-box">
+
+        <h3>Catatan</h3>
+
+        <p>
+            Data penduduk ini diperbarui secara berkala setiap bulan
+            berdasarkan laporan dari RT/RW dan hasil pendataan perangkat desa.
+            Untuk informasi lebih detail, silakan hubungi Kantor Desa Leuwigede.
+        </p>
+
+    </div>
+
+</div>
 
 </x-app-layout>
