@@ -1,36 +1,46 @@
 <x-app-layout>
 
 <a href="/dashboard" class="kembali-link">
-        ← Kembali ke Beranda
-    </a>
+    ← Kembali ke Beranda
+</a>
 
 <div class="container mt-4">
 
     <h3 class="text-center mb-2 fw-bold">Status Pengajuan</h3>
-    <p class="text-center text-muted mb-4">Pantau status pengajuan surat Anda</p>
+    <p class="text-center text-muted mb-4">
+        Pantau status pengajuan surat dan perpindahan penduduk Anda
+    </p>
 
     {{-- SUMMARY --}}
     <div class="row text-center mb-4 g-3">
 
-       <div class="summary-wrapper">
+        <div class="summary-wrapper">
 
             <div class="summary-box proses">
-                <h3>{{ $data->where('status','diproses')->count() }}</h3>
+                <h3>
+                    {{ $pengajuan->where('status','diproses')->count() + $perpindahan->where('status','diproses')->count() }}
+                </h3>
                 <p>Dalam Proses</p>
             </div>
 
             <div class="summary-box verifikasi">
-                <h3>{{ $data->where('status','pending')->count() }}</h3>
+                <h3>
+                    {{ $pengajuan->where('status','pending')->count() + $perpindahan->where('status','pending')->count() }}
+                </h3>
                 <p>Verifikasi</p>
             </div>
 
             <div class="summary-box selesai">
-                <h3>{{ $data->where('status','selesai')->count() }}</h3>
+                <h3>
+                    {{ $pengajuan->where('status','selesai')->count() + $perpindahan->where('status','selesai')->count() }}
+                </h3>
                 <p>Selesai</p>
             </div>
 
             <div class="summary-box ditolak">
-                <h3>{{ $data->where('status','ditolak')->count() }}</h3>
+                <h3>
+                    {{ $pengajuan->where('status','ditolak')->count() + $perpindahan->where('status','ditolak')->count() }}
+                </h3>
                 <p>Ditolak</p>
             </div>
 
@@ -38,17 +48,23 @@
 
     </div>
 
-    {{-- LIST --}}
-    @foreach($data as $d)
+    {{-- ========================= --}}
+    {{-- PENGAJUAN SURAT --}}
+    {{-- ========================= --}}
+
+    @foreach($pengajuan as $d)
+
     <div class="card p-4 mb-3 shadow-sm custom-card">
 
         <div class="row align-items-center">
 
-            {{-- KIRI --}}
             <div class="col-md-7">
 
                 <div class="mb-2">
-                    <span class="badge bg-secondary">PGJ{{ $d->id }}</span>
+
+                    <span class="badge bg-secondary">
+                        PGJ{{ $d->id }}
+                    </span>
 
                     @if($d->status == 'pending')
                         <span class="badge badge-verifikasi">Sedang Verifikasi</span>
@@ -59,17 +75,21 @@
                     @else
                         <span class="badge badge-ditolak">Ditolak</span>
                     @endif
+
                 </div>
 
                 <h5 class="fw-bold">{{ $d->jenis_surat }}</h5>
 
                 <p class="mb-1">Nama: {{ $d->nama }}</p>
-                <p class="text-muted">Tanggal: {{ $d->created_at->format('d F Y') }}</p>
+
+                <p class="text-muted">
+                    Tanggal: {{ $d->created_at->format('d F Y') }}
+                </p>
 
             </div>
 
-            {{-- KANAN --}}
             <div class="col-md-5">
+
                 <div class="keterangan-box">
 
                     <b>Keterangan:</b>
@@ -85,15 +105,89 @@
                     @endif
 
                 </div>
+
             </div>
 
         </div>
 
     </div>
+
     @endforeach
 
+
+    {{-- ========================= --}}
+    {{-- PERPINDAHAN PENDUDUK --}}
+    {{-- ========================= --}}
+
+    @foreach($perpindahan as $p)
+
+    <div class="card p-4 mb-3 shadow-sm custom-card">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-7">
+
+                <div class="mb-2">
+
+                    <span class="badge bg-info">
+                        PND{{ $p->id }}
+                    </span>
+
+                    @if($p->status == 'pending')
+                        <span class="badge badge-verifikasi">Sedang Verifikasi</span>
+                    @elseif($p->status == 'diproses')
+                        <span class="badge badge-proses">Dalam Proses</span>
+                    @elseif($p->status == 'selesai')
+                        <span class="badge badge-selesai">Selesai</span>
+                    @else
+                        <span class="badge badge-ditolak">Ditolak</span>
+                    @endif
+
+                </div>
+
+                <h5 class="fw-bold">Perpindahan Penduduk</h5>
+
+                <p class="mb-1">Nama: {{ $p->nama }}</p>
+
+                <p class="mb-1">
+                    Tujuan: {{ $p->kabupaten_tujuan }}
+                </p>
+
+                <p class="text-muted">
+                    Tanggal: {{ $p->created_at->format('d F Y') }}
+                </p>
+
+            </div>
+
+            <div class="col-md-5">
+
+                <div class="keterangan-box">
+
+                    <b>Keterangan:</b>
+
+                    @if($p->status == 'pending')
+                        <p>Permohonan sedang diverifikasi</p>
+                    @elseif($p->status == 'diproses')
+                        <p>Permohonan perpindahan sedang diproses</p>
+                    @elseif($p->status == 'selesai')
+                        <p>Perpindahan telah disetujui dan selesai</p>
+                    @else
+                        <p>Permohonan perpindahan ditolak</p>
+                    @endif
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @endforeach
+
+
     {{-- KETERANGAN --}}
-    <div class="row">
+    <div class="row mt-5">
 
         <div class="col-md-6">
 

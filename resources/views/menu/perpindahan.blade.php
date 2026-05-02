@@ -1,82 +1,216 @@
 <x-app-layout>
-    <a href="/dashboard">← Kembali ke Beranda</a>
 
-    <div class="container mt-5">
+<div class="perpindahan-page">
 
-    <h1>Perpindahan Penduduk</h1>
+    <a href="/dashboard" class="kembali-link">
+        ← Kembali ke Beranda
+    </a>
 
-        <form action="/perpindahan-penduduk/store" method="POST">
-            @csrf
+    <div class="container">
 
-            <div class="mb-3">
-                <label>NIK</label>
-                <input type="text" name="nik" class="form-control">
-            </div>
+        <div class="icon-perpindahan">
+            ↻
+        </div>
 
-            <div class="mb-3">
-                <label>Nama</label>
-                <input type="text" name="nama" class="form-control">
-            </div>
+        <h1>Perpindahan Penduduk</h1>
 
-            <div class="mb-3">
-                <label>Jenis Kelamin</label>
-                <select name="jenis_kelamin" class="form-control">
-                    <option>L</option>
-                    <option>P</option>
-                </select>
-            </div>
+        <p class="subtitle">
+            Formulir permohonan pindah domisili
+        </p>
 
-            <div class="mb-3">
-                <label>Tanggal Lahir</label>
-                <input type="date" name="tanggal_lahir" class="form-control">
-            </div>
+        <div class="form-card">
 
-            <div class="mb-3">
-                <label>Alamat Asal</label>
-                <textarea name="alamat_asal" class="form-control"></textarea>
-            </div>
+            <form action="/perpindahan/store" method="POST">
+                @csrf
 
-            <div class="mb-3">
-                <label>Alamat Tujuan</label>
-                <textarea name="alamat_tujuan" class="form-control"></textarea>
-            </div>
+                <div class="section-title">
+                    Data Pemohon
+                </div>
 
-            <div class="mb-3">
-                <label>Provinsi Tujuan</label>
-                <input type="text" name="provinsi_tujuan" class="form-control">
-            </div>
+                <div class="mb-4">
+                    <label>NIK (Nomor Induk Kependudukan) *</label>
+                    <input
+                        type="text"
+                        name="nik"
+                        placeholder="Masukkan 16 digit NIK">
+                </div>
 
-            <div class="mb-3">
-                <label>Kabupaten Tujuan</label>
-                <input type="text" name="kabupaten_tujuan" class="form-control">
-            </div>
+                <div class="mb-4">
+                    <label>Nama Lengkap (Kepala Keluarga) *</label>
+                    <input
+                        type="text"
+                        name="nama"
+                        placeholder="Masukkan nama lengkap sesuai KTP">
+                </div>
 
-            <div class="mb-3">
-                <label>Kecamatan Tujuan</label>
-                <input type="text" name="kecamatan_tujuan" class="form-control">
-            </div>
+                <div class="grid-2">
 
-            <div class="mb-3">
-                <label>Desa Tujuan</label>
-                <input type="text" name="desa_tujuan" class="form-control">
-            </div>
+                    <div class="mb-4">
+                        <label>Jenis Kelamin *</label>
 
-            <div class="mb-3">
-                <label>Alasan Pindah</label>
-                <input type="text" name="alasan_pindah" class="form-control">
-            </div>
+                        <select name="jenis_kelamin">
+                            <option value="">Pilih jenis kelamin</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
+                    </div>
 
-            <div class="mb-3">
-                <label>Jumlah Anggota</label>
-                <input type="number" name="jumlah_anggota" class="form-control">
-            </div>
+                    <div class="mb-4">
+                        <label>Tanggal Lahir *</label>
 
-            <button type="submit" class="btn btn-primary">
-                Ajukan
-            </button>
+                        <input
+                            type="date"
+                            name="tanggal_lahir">
+                    </div>
 
-        </form>
+                </div>
+
+                <div class="mb-4">
+                    <label>Jumlah Anggota Keluarga yang Pindah *</label>
+
+                    <input
+                        type="number"
+                        name="jumlah_anggota"
+                        placeholder="Contoh: 4">
+                </div>
+
+                <hr>
+
+                <div class="section-title mt-5">
+                    Alamat Asal
+                </div>
+
+                <div class="mb-4">
+                    <label>Alamat Lengkap Saat Ini *</label>
+
+                    <textarea
+                        name="alamat_asal"
+                        placeholder="RT/RW, Dusun, Desa Leuwigede, Kec. Widasari, Kab. Indramayu"></textarea>
+                </div>
+
+                <hr>
+
+                <div class="section-title mt-5">
+                    Alamat Tujuan Pindah
+                </div>
+
+                <div class="mb-4">
+                    <label>Alamat Lengkap Tujuan *</label>
+
+                    <textarea
+                        name="alamat_tujuan"
+                        placeholder="RT/RW, Dusun, Jalan, dll"></textarea>
+                </div>
+
+                <div class="grid-2">
+
+                    <div class="mb-4">
+                        <label>Provinsi Tujuan *</label>
+
+                        <input
+                            type="text"
+                            name="provinsi_tujuan"
+                            placeholder="Contoh: Jawa Barat">
+                    </div>
+
+                    <div class="mb-4">
+                        <label>Kabupaten/Kota Tujuan *</label>
+
+                        <input
+                            type="text"
+                            name="kabupaten_tujuan"
+                            placeholder="Contoh: Bandung">
+                    </div>
+
+                </div>
+
+                <div class="grid-2">
+
+                    <div class="mb-4">
+                        <label>Kecamatan Tujuan *</label>
+
+                        <input
+                            type="text"
+                            name="kecamatan_tujuan"
+                            placeholder="Contoh: Bandung Wetan">
+                    </div>
+
+                    <div class="mb-4">
+                        <label>Desa/Kelurahan Tujuan *</label>
+
+                        <input
+                            type="text"
+                            name="desa_tujuan"
+                            placeholder="Contoh: Cibeunying">
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+                    <label>Alasan Pindah *</label>
+
+                    <select name="alasan_pindah">
+
+                        <option value="">
+                            Pilih alasan pindah
+                        </option>
+
+                        <option value="Pekerjaan">
+                            Pekerjaan
+                        </option>
+
+                        <option value="Pendidikan">
+                            Pendidikan
+                        </option>
+
+                        <option value="Mengikuti Keluarga">
+                            Mengikuti Keluarga
+                        </option>
+
+                        <option value="Lainnya">
+                            Lainnya
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="btn-area">
+
+                    <button type="submit" class="btn-kirim">
+                        Ajukan Permohonan Pindah
+                    </button>
+
+                    <a href="/dashboard" class="btn-batal">
+                        Batal
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="dokumen-box">
+
+            <h3>Dokumen yang Perlu Disiapkan</h3>
+
+            <ul>
+                <li>Fotocopy Kartu Keluarga (KK)</li>
+                <li>Fotocopy KTP semua anggota keluarga yang pindah</li>
+                <li>Surat Pengantar RT/RW</li>
+                <li>Surat Keterangan Pindah dari desa asal</li>
+                <li>Dokumen pendukung lainnya (jika diperlukan)</li>
+            </ul>
+
+            <p class="catatan">
+                <strong>Catatan:</strong>
+                Proses verifikasi membutuhkan waktu 5-7 hari kerja
+            </p>
+
+        </div>
 
     </div>
+
+</div>
 
 </x-app-layout>

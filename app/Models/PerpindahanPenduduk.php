@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PerpindahanPenduduk extends Model
 {
+    
     protected $fillable = [
+        'user_id',
         'nik',
         'nama',
         'jenis_kelamin',

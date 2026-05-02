@@ -8,6 +8,7 @@ use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PerpindahanPendudukController;
+use App\Http\Controllers\ArsipController;
 
 
 use App\Models\ProfilDesa;
@@ -81,23 +82,47 @@ Route::middleware('auth')->group(function () {
 
 
     /*
-    ================= MENU LAIN =================
+    ================= arsip =================
     */
 
-    Route::get('/arsip', function () {
-        if (strtolower(Auth::user()->role) !== 'admin') {
-            return redirect('/dashboard')->with('error', 'Akses hanya untuk admin');
-        }
+    Route::get('/arsip', [ArsipController::class, 'index']);
 
-        return view('menu.arsip');
-    });
+    Route::get('/arsip/pengajuan/{id}', [ArsipController::class, 'lihatPengajuan']);
+
+Route::get('/arsip/perpindahan/{id}', [ArsipController::class, 'lihatPerpindahan']);
+
+
+ /*
+    ================= status =================
+    */
 
     Route::get('/status', [StatusController::class, 'index']);
 
-    
-    Route::get('/perpindahan-penduduk', [PerpindahanPendudukController::class, 'index']);
+/*
+    ================= perpindahan =================
+    */
 
-    Route::post('/perpindahan-penduduk/store', [PerpindahanPendudukController::class, 'store']);
+    Route::get('/perpindahan', [PerpindahanPendudukController::class, 'index']);
+
+    Route::post('/perpindahan/store', [PerpindahanPendudukController::class, 'store']);
+
+    Route::get('/perpindahan',
+    [PerpindahanPendudukController::class, 'index']);
+
+    Route::post('/perpindahan/store',
+        [PerpindahanPendudukController::class, 'store']);
+
+    Route::post('/perpindahan/{id}/setujui',
+        [PerpindahanPendudukController::class, 'setujui'])
+        ->name('perpindahan.setujui');
+
+    Route::post('/perpindahan/{id}/tolak',
+        [PerpindahanPendudukController::class, 'tolak'])
+        ->name('perpindahan.tolak');
+
+    Route::post('/perpindahan/{id}/selesai',
+        [PerpindahanPendudukController::class, 'selesai'])
+        ->name('perpindahan.selesai');
 
     /*
     ================= PENGAJUAN =================
