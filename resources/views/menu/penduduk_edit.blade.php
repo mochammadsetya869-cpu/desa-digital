@@ -21,6 +21,7 @@
         </select>
 
         <select name="pendidikan" class="form-control mb-2">
+            <option {{ $p->pendidikan == 'Tidak' ? 'selected' : '' }}>Tidak</option>
             <option {{ $p->pendidikan == 'SD' ? 'selected' : '' }}>SD</option>
             <option {{ $p->pendidikan == 'SMP' ? 'selected' : '' }}>SMP</option>
             <option {{ $p->pendidikan == 'SMA' ? 'selected' : '' }}>SMA</option>

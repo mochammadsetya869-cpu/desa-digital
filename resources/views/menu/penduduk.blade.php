@@ -110,11 +110,17 @@
             <h5>Tingkat Pendidikan</h5>
 
             @php
+                $tidak_p = $total ? ($tidak / $total) * 100 : 0;
                 $sd_p = $total ? ($sd / $total) * 100 : 0;
                 $smp_p = $total ? ($smp / $total) * 100 : 0;
                 $sma_p = $total ? ($sma / $total) * 100 : 0;
                 $diploma_p = $total ? ($diploma / $total) * 100 : 0;
             @endphp
+
+            Tidak/Belum Sekolah ({{ $tidak }})
+            <div class="progress mb-2">
+                <div class="progress-bar bg-primary" style="width: {{ $tidak_p }}%"></div>
+            </div>
 
             SD/Sederajat ({{ $sd }})
             <div class="progress mb-2">

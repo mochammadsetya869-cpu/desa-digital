@@ -1,55 +1,101 @@
 <x-app-layout>
-<div class="container mt-4">
+<a href="/dashboard" class="kembali-link">
+    ← Kembali ke Beranda
+</a>
+<div class="profil-container">
 
-    <a href="/dashboard">← Kembali ke Beranda</a>
+    
 
-    <h2 class="text-center mt-3">
-        Profil Desa {{ $profil->nama_desa }}
-    </h2>
-
-    <p class="text-center text-muted">
-        {{ $profil->kabupaten }}, {{ $profil->provinsi }}
-    </p>
+    <!-- HEADER -->
+    <div class="profil-header">
+        <h1>Profil Desa {{ $profil->nama_desa }}</h1>
+        <p>{{ $profil->kabupaten }}, {{ $profil->provinsi }}</p>
+    </div>
 
     <!-- INFORMASI -->
-    <div class="card p-4 mt-4 shadow-sm">
-        <h4>Informasi Umum</h4>
+    <div class="profil-card">
+        <h2>Informasi Umum</h2>
 
-        <div class="row mt-3">
-            <div class="col-md-6">
-                <p><b>Nama Desa:</b> {{ $profil->nama_desa }}</p>
-                <p><b>Kabupaten:</b> {{ $profil->kabupaten }}</p>
-                <p><b>Kode Pos:</b> {{ $profil->kode_pos }}</p>
+        <div class="profil-grid">
+
+            <div class="profil-item">
+                <span>Nama Desa</span>
+                <strong>{{ $profil->nama_desa }}</strong>
             </div>
 
-            <div class="col-md-6">
-                <p><b>Kecamatan:</b> {{ $profil->kecamatan }}</p>
-                <p><b>Provinsi:</b> {{ $profil->provinsi }}</p>
-                <p><b>Luas:</b> {{ $profil->luas_wilayah }}</p>
+            <div class="profil-item">
+                <span>Kecamatan</span>
+                <strong>{{ $profil->kecamatan }}</strong>
             </div>
+
+            <div class="profil-item">
+                <span>Kabupaten</span>
+                <strong>{{ $profil->kabupaten }}</strong>
+            </div>
+
+            <div class="profil-item">
+                <span>Provinsi</span>
+                <strong>{{ $profil->provinsi }}</strong>
+            </div>
+
+            <div class="profil-item">
+                <span>Kode Pos</span>
+                <strong>{{ $profil->kode_pos }}</strong>
+            </div>
+
+            <div class="profil-item">
+                <span>Luas Wilayah</span>
+                <strong>{{ $profil->luas_wilayah }}</strong>
+            </div>
+
         </div>
     </div>
 
     <!-- VISI -->
-    <div class="card p-4 mt-4 shadow-sm bg-light">
-        <h4>Visi Desa</h4>
-        <p>{{ $profil->visi }}</p>
+    <div class="visi-card">
+        <div class="section-title">
+            <div class="icon-box blue">👁</div>
+            <h2>Visi Desa</h2>
+        </div>
+
+        <p class="visi-text">
+            {{ $profil->visi }}
+        </p>
     </div>
 
     <!-- MISI -->
-    <div class="card p-4 mt-4 shadow-sm">
-        <h4>Misi Desa</h4>
+    <div class="misi-card">
+        <div class="section-title">
+            <div class="icon-box green">🎯</div>
+            <h2>Misi Desa</h2>
+        </div>
 
-        @foreach(explode("\n", $profil->misi) as $item)
-            <p>• {{ $item }}</p>
-        @endforeach
+        <div class="misi-list">
+            @foreach(explode("\n", $profil->misi) as $index => $item)
+
+                @if(trim($item) != '')
+                <div class="misi-item">
+                    <div class="misi-number">
+                        {{ $index + 1 }}
+                    </div>
+
+                    <p>{{ $item }}</p>
+                </div>
+                @endif
+
+            @endforeach
+        </div>
     </div>
 
-        @if(Auth::check() && strtolower(trim(Auth::user()->role)) === 'admin')
+    <!-- BUTTON EDIT -->
+    @if(Auth::check() && strtolower(trim(Auth::user()->role)) === 'admin')
+        <div class="edit-wrapper">
             <a href="/profil/edit" class="btn-edit">
                 ✏️ Edit Profil
             </a>
-        @endif
+        </div>
+    @endif
+
 </div>
 
 </x-app-layout>

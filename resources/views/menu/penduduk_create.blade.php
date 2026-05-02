@@ -25,6 +25,7 @@
         {{-- PENDIDIKAN --}}
         <select name="pendidikan" class="form-control mb-2">
             <option value="">-- Pilih Pendidikan --</option>
+            <option value="Tidak">Tidak</option>
             <option value="SD">SD</option>
             <option value="SMP">SMP</option>
             <option value="SMA">SMA</option>

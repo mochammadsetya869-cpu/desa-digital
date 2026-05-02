@@ -1,66 +1,110 @@
 <x-app-layout>
 
-<a href="/dashboard" class="btn btn-outline-primary mb-3">
+<div class="pengajuan-admin-page">
+
+    <a href="/dashboard" class="btn btn-outline-primary mb-4">
         ← Kembali ke Beranda
     </a>
 
+    <div class="admin-header">
+        <h1>Data Pengajuan</h1>
+        <p>Kelola pengajuan surat masyarakat</p>
+    </div>
 
-<div class="container mt-4">
+    <div class="admin-card">
 
-    <h3>Data Pengajuan</h3>
+        <table class="pengajuan-table">
 
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>NIK</th>
-                <th>Jenis Surat</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>NIK</th>
+                    <th>Jenis Surat</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
 
-        <tbody>
-            @foreach($data as $p)
-            <tr>
-                <td>{{ $p->nama }}</td>
-                <td>{{ $p->nik }}</td>
-                <td>{{ $p->jenis_surat }}</td>
-                <td>{{ $p->status }}</td>
+            <tbody>
 
-                <td>
+                @foreach($data as $p)
 
-                    @if($p->status == 'pending')
+                <tr>
 
-                        <a href="/pengajuan/setuju/{{ $p->id }}" class="btn btn-success btn-sm">
-                            Setujui
-                        </a>
+                    <td>{{ $p->nama }}</td>
 
-                        <a href="/pengajuan/tolak/{{ $p->id }}" class="btn btn-danger btn-sm">
-                            Tolak
-                        </a>
+                    <td>{{ $p->nik }}</td>
 
-                    @elseif($p->status == 'diproses')
+                    <td>{{ $p->jenis_surat }}</td>
 
-                        <a href="/pengajuan/selesai/{{ $p->id }}" class="btn btn-primary btn-sm">
-                            Selesai
-                        </a>
+                    <td>
 
-                    @elseif($p->status == 'selesai')
+                        @if($p->status == 'pending')
+                            <span class="status pending">
+                                Pending
+                            </span>
 
-                        <span class="badge bg-success">Sudah Selesai</span>
+                        @elseif($p->status == 'diproses')
+                            <span class="status proses">
+                                Diproses
+                            </span>
 
-                    @elseif($p->status == 'ditolak')
+                        @elseif($p->status == 'selesai')
+                            <span class="status selesai">
+                                Selesai
+                            </span>
 
-                        <span class="badge bg-danger">Ditolak</span>
+                        @elseif($p->status == 'ditolak')
+                            <span class="status ditolak">
+                                Ditolak
+                            </span>
+                        @endif
 
-                    @endif
+                    </td>
 
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                    <td class="aksi">
+
+                        @if($p->status == 'pending')
+
+                            <a href="/pengajuan/setuju/{{ $p->id }}" class="btn-setuju">
+                                Setujui
+                            </a>
+
+                            <a href="/pengajuan/tolak/{{ $p->id }}" class="btn-tolak">
+                                Tolak
+                            </a>
+
+                        @elseif($p->status == 'diproses')
+
+                            <a href="/pengajuan/selesai/{{ $p->id }}" class="btn-selesai">
+                                Selesai
+                            </a>
+
+                        @elseif($p->status == 'selesai')
+
+                            <span class="done-text">
+                                Sudah Selesai
+                            </span>
+
+                        @elseif($p->status == 'ditolak')
+
+                            <span class="reject-text">
+                                Ditolak
+                            </span>
+
+                        @endif
+
+                    </td>
+
+                </tr>
+
+                @endforeach
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
 

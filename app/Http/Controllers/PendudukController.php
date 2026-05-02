@@ -35,6 +35,10 @@ class PendudukController extends Controller
             }
         }
         // ================= PENDIDIKAN =================
+        $tidak = $data->filter(fn($p) =>
+            str_contains(strtolower(trim($p->pendidikan ?? '')), 'tidak')
+        )->count();
+
         $sd = $data->filter(fn($p) =>
             str_contains(strtolower(trim($p->pendidikan ?? '')), 'sd')
         )->count();
@@ -80,7 +84,7 @@ class PendudukController extends Controller
             'balita','anak','dewasa','lansia',
 
             // pendidikan
-            'sd','smp','sma','diploma',
+            'tidak','sd','smp','sma','diploma',
 
             // pekerjaan
             'petani','buruh','wiraswasta','pns','tidakKerja', 'pensiunan',

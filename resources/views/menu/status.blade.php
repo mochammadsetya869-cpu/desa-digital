@@ -1,6 +1,6 @@
 <x-app-layout>
 
-<a href="/dashboard" class="btn btn-outline-primary mb-3">
+<a href="/dashboard" class="kembali-link">
     ← Kembali ke Beranda
 </a>
 
