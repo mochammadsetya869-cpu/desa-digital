@@ -63,7 +63,7 @@ class PendudukController extends Controller
         $buruh = $data->where('pekerjaan', 'Buruh')->count();
         $wiraswasta = $data->where('pekerjaan', 'Wiraswasta')->count();
         $pns = $data->where('pekerjaan', 'PNS/TNI/Polri')->count();
-        $belum = $data->where('pekerjaan', 'Belum')->count();
+        $belum = $data->where('pekerjaan', 'Belum/Tidak Bekerja')->count();
         $pensiunan = $data->where('pekerjaan', 'Pensiunan')->count();
 
 
