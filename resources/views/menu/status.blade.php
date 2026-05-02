@@ -1,8 +1,8 @@
 <x-app-layout>
 
 <a href="/dashboard" class="kembali-link">
-    ← Kembali ke Beranda
-</a>
+        ← Kembali ke Beranda
+    </a>
 
 <div class="container mt-4">
 

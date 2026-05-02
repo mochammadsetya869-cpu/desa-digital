@@ -2,8 +2,8 @@
 
 <div class="container mt-4">
 
-    <a href="/data-penduduk" class="btn btn-outline-primary mb-3">
-        ← Kembali
+    <a href="/data-penduduk" class="kembali-link">
+        ← Kembali ke Beranda
     </a>
 
     <h3>Tambah Penduduk</h3>

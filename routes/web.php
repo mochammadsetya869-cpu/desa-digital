@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\PerpindahanPendudukController;
 
 
 use App\Models\ProfilDesa;
@@ -92,8 +93,11 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/status', [StatusController::class, 'index']);
-    Route::get('/perpindahan', fn() => view('menu.perpindahan'));
 
+    
+    Route::get('/perpindahan-penduduk', [PerpindahanPendudukController::class, 'index']);
+
+    Route::post('/perpindahan-penduduk/store', [PerpindahanPendudukController::class, 'store']);
 
     /*
     ================= PENGAJUAN =================

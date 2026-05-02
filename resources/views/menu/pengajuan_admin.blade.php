@@ -2,7 +2,7 @@
 
 <div class="pengajuan-admin-page">
 
-    <a href="/dashboard" class="btn btn-outline-primary mb-4">
+    <a href="/dashboard" class="kembali-link">
         ← Kembali ke Beranda
     </a>
 
