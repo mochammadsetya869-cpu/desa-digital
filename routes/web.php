@@ -89,7 +89,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/arsip/pengajuan/{id}', [ArsipController::class, 'lihatPengajuan']);
 
-Route::get('/arsip/perpindahan/{id}', [ArsipController::class, 'lihatPerpindahan']);
+    Route::get('/arsip/perpindahan/{id}', [ArsipController::class, 'lihatPerpindahan']);
+
+    Route::get('/arsip/pengajuan/{id}/download',
+    [ArsipController::class, 'downloadPengajuan']);
+
+    Route::get('/arsip/perpindahan/{id}/download',
+    [ArsipController::class, 'downloadPerpindahan']);
 
 
  /*
@@ -124,12 +130,76 @@ Route::get('/arsip/perpindahan/{id}', [ArsipController::class, 'lihatPerpindahan
         [PerpindahanPendudukController::class, 'selesai'])
         ->name('perpindahan.selesai');
 
+    Route::get('/perpindahan/detail/{id}',
+    [PerpindahanPendudukController::class, 'detail']);
+
+    Route::post('/perpindahan/tolak/{id}',
+        [PerpindahanPendudukController::class, 'tolak']);
+
+    Route::get('/perpindahan/edit/{id}',
+        [PerpindahanPendudukController::class, 'edit']);
+
+    Route::put('/perpindahan/update/{id}',
+        [PerpindahanPendudukController::class, 'update']);    
     /*
     ================= PENGAJUAN =================
     */
 
     Route::get('/pengajuan', [PengajuanController::class, 'index']);
     Route::post('/pengajuan/store', [PengajuanController::class, 'store']);
+
+    Route::get('/pengajuan/setuju/{id}', function ($id) {
+
+        if (strtolower(Auth::user()->role) !== 'admin') {
+            abort(403);
+        }
+
+        $p = \App\Models\Pengajuan::findOrFail($id);
+
+        $p->update([
+            'status' => 'diproses'
+        ]);
+
+        return back()->with('success', 'Pengajuan disetujui');
+    });
+
+    Route::get('/pengajuan/tolak/{id}', function ($id) {
+
+        if (strtolower(Auth::user()->role) !== 'admin') {
+            abort(403);
+        }
+
+        $p = \App\Models\Pengajuan::findOrFail($id);
+
+        $p->update([
+            'status' => 'ditolak'
+        ]);
+
+        return back()->with('success', 'Pengajuan ditolak');
+    });
+
+    Route::get('/pengajuan/selesai/{id}', function ($id) {
+
+        if (strtolower(Auth::user()->role) !== 'admin') {
+            abort(403);
+        }
+
+        $p = \App\Models\Pengajuan::findOrFail($id);
+
+        $p->update([
+            'status' => 'selesai'
+        ]);
+
+        return back();
+    });
+
+    Route::get('/pengajuan/detail/{id}', [PengajuanController::class, 'detail']);
+
+    Route::post('/pengajuan/tolak/{id}', [PengajuanController::class, 'tolak']);
+
+    Route::get('/pengajuan/edit/{id}', [PengajuanController::class, 'edit']);
+
+    Route::put('/pengajuan/update/{id}', [PengajuanController::class, 'update']);
 
 
     /*
@@ -208,64 +278,6 @@ Route::get('/arsip/perpindahan/{id}', [ArsipController::class, 'lihatPerpindahan
 
 });
 
-Route::post('/pengajuan/store', function (Request $request) {
-
-    \App\Models\Pengajuan::create([
-        'user_id' => Auth::id(),
-        'nama' => $request->nama,
-        'nik' => $request->nik,
-        'jenis_surat' => $request->jenis_surat,
-        'keterangan' => $request->keterangan,
-        'status' => 'pending',
-    ]);
-
-    return redirect('/pengajuan')->with('success', 'Pengajuan berhasil');
-});
-
-Route::get('/pengajuan/setuju/{id}', function ($id) {
-
-    if (strtolower(Auth::user()->role) !== 'admin') {
-        abort(403);
-    }
-
-    $p = \App\Models\Pengajuan::findOrFail($id);
-
-    $p->update([
-        'status' => 'diproses'
-    ]);
-
-    return back()->with('success', 'Pengajuan disetujui');
-});
-
-Route::get('/pengajuan/tolak/{id}', function ($id) {
-
-    if (strtolower(Auth::user()->role) !== 'admin') {
-        abort(403);
-    }
-
-    $p = \App\Models\Pengajuan::findOrFail($id);
-
-    $p->update([
-        'status' => 'ditolak'
-    ]);
-
-    return back()->with('success', 'Pengajuan ditolak');
-});
-
-Route::get('/pengajuan/selesai/{id}', function ($id) {
-
-    if (strtolower(Auth::user()->role) !== 'admin') {
-        abort(403);
-    }
-
-    $p = \App\Models\Pengajuan::findOrFail($id);
-
-    $p->update([
-        'status' => 'selesai'
-    ]);
-
-    return back();
-});
 
 
 

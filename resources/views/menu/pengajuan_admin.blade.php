@@ -66,13 +66,30 @@
 
                         @if($p->status == 'pending')
 
+                            <a href="/pengajuan/detail/{{ $p->id }}" class="btn-selesai">
+                                Detail
+                            </a>
+
                             <a href="/pengajuan/setuju/{{ $p->id }}" class="btn-setuju">
                                 Setujui
                             </a>
 
-                            <a href="/pengajuan/tolak/{{ $p->id }}" class="btn-tolak">
-                                Tolak
-                            </a>
+                            <form action="/pengajuan/tolak/{{ $p->id }}"
+                                method="POST"
+                                style="display:inline;">
+
+                                @csrf
+
+                                <input type="text"
+                                    name="catatan_admin"
+                                    placeholder="Catatan admin"
+                                    style="padding:8px;border-radius:8px;border:1px solid #ccc;">
+
+                                <button class="btn-tolak">
+                                    Tolak
+                                </button>
+
+                            </form>
 
                         @elseif($p->status == 'diproses')
 

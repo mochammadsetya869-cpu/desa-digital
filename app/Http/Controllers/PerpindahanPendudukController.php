@@ -63,17 +63,7 @@ class PerpindahanPendudukController extends Controller
         return back();
     }
 
-    // TOLAK
-    public function tolak($id)
-    {
-        $data = PerpindahanPenduduk::findOrFail($id);
-
-        $data->status = 'ditolak';
-
-        $data->save();
-
-        return back();
-    }
+    
 
     // SELESAI
     public function selesai($id)
@@ -85,5 +75,61 @@ class PerpindahanPendudukController extends Controller
         $data->save();
 
         return back();
+    }
+
+    public function detail($id)
+    {
+        $data = PerpindahanPenduduk::findOrFail($id);
+
+        return view('menu.perpindahan_detail_admin', compact('data'));
+    }
+
+    public function tolak(Request $request, $id)
+    {
+        $data = PerpindahanPenduduk::findOrFail($id);
+
+        $data->status = 'ditolak';
+
+        $data->catatan_admin = $request->catatan_admin;
+
+        $data->save();
+
+        return redirect('/perpindahan');
+    }
+
+    public function edit($id)
+    {
+        $data = PerpindahanPenduduk::findOrFail($id);
+
+        return view('menu.perpindahan_edit', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = PerpindahanPenduduk::findOrFail($id);
+
+        $data->nik = $request->nik;
+        $data->nama = $request->nama;
+        $data->jenis_kelamin = $request->jenis_kelamin;
+        $data->tanggal_lahir = $request->tanggal_lahir;
+        $data->jumlah_anggota = $request->jumlah_anggota;
+
+        $data->alamat_asal = $request->alamat_asal;
+        $data->alamat_tujuan = $request->alamat_tujuan;
+
+        $data->provinsi_tujuan = $request->provinsi_tujuan;
+        $data->kabupaten_tujuan = $request->kabupaten_tujuan;
+        $data->kecamatan_tujuan = $request->kecamatan_tujuan;
+        $data->desa_tujuan = $request->desa_tujuan;
+
+        $data->alasan_pindah = $request->alasan_pindah;
+
+        $data->status = 'pending';
+
+        $data->catatan_admin = null;
+
+        $data->save();
+
+        return redirect('/status');
     }
 }

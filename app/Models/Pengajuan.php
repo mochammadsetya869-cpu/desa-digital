@@ -8,12 +8,19 @@ class Pengajuan extends Model
 {
     protected $table = 'pengajuan';
 
-    protected $fillable = [
+   protected $fillable = [
         'user_id',
-        'nama',
-        'nik',
         'jenis_surat',
+        'nik',
+        'nama',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'alamat',
+        'agama',
+        'pekerjaan',
         'keterangan',
-        'status'
+        'status',
+        'catatan_admin'
     ];
 }

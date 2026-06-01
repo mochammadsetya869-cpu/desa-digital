@@ -7,7 +7,7 @@
     </a>
 
     <h1 class="detail-title">
-        Detail {{ $data->jenis_surat }}
+        Detail Pengajuan Surat
     </h1>
 
     <div class="detail-card">

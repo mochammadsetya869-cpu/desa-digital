@@ -6,7 +6,10 @@
 
 <div class="container mt-4">
 
-    <h3 class="text-center mb-2 fw-bold">Status Pengajuan</h3>
+    <h3 class="text-center mb-2 fw-bold">
+        Status Pengajuan
+    </h3>
+
     <p class="text-center text-muted mb-4">
         Pantau status pengajuan surat dan perpindahan penduduk Anda
     </p>
@@ -20,6 +23,7 @@
                 <h3>
                     {{ $pengajuan->where('status','diproses')->count() + $perpindahan->where('status','diproses')->count() }}
                 </h3>
+
                 <p>Dalam Proses</p>
             </div>
 
@@ -27,6 +31,7 @@
                 <h3>
                     {{ $pengajuan->where('status','pending')->count() + $perpindahan->where('status','pending')->count() }}
                 </h3>
+
                 <p>Verifikasi</p>
             </div>
 
@@ -34,6 +39,7 @@
                 <h3>
                     {{ $pengajuan->where('status','selesai')->count() + $perpindahan->where('status','selesai')->count() }}
                 </h3>
+
                 <p>Selesai</p>
             </div>
 
@@ -41,6 +47,7 @@
                 <h3>
                     {{ $pengajuan->where('status','ditolak')->count() + $perpindahan->where('status','ditolak')->count() }}
                 </h3>
+
                 <p>Ditolak</p>
             </div>
 
@@ -67,23 +74,44 @@
                     </span>
 
                     @if($d->status == 'pending')
-                        <span class="badge badge-verifikasi">Sedang Verifikasi</span>
+
+                        <span class="badge badge-verifikasi">
+                            Sedang Verifikasi
+                        </span>
+
                     @elseif($d->status == 'diproses')
-                        <span class="badge badge-proses">Dalam Proses</span>
+
+                        <span class="badge badge-proses">
+                            Dalam Proses
+                        </span>
+
                     @elseif($d->status == 'selesai')
-                        <span class="badge badge-selesai">Selesai</span>
+
+                        <span class="badge badge-selesai">
+                            Selesai
+                        </span>
+
                     @else
-                        <span class="badge badge-ditolak">Ditolak</span>
+
+                        <span class="badge badge-ditolak">
+                            Ditolak
+                        </span>
+
                     @endif
 
                 </div>
 
-                <h5 class="fw-bold">{{ $d->jenis_surat }}</h5>
+                <h5 class="fw-bold">
+                    {{ $d->jenis_surat }}
+                </h5>
 
-                <p class="mb-1">Nama: {{ $d->nama }}</p>
+                <p class="mb-1">
+                    Nama: {{ $d->nama }}
+                </p>
 
                 <p class="text-muted">
-                    Tanggal: {{ $d->created_at->format('d F Y') }}
+                    Tanggal:
+                    {{ $d->created_at->format('d F Y') }}
                 </p>
 
             </div>
@@ -95,13 +123,45 @@
                     <b>Keterangan:</b>
 
                     @if($d->status == 'pending')
-                        <p>Sedang dalam proses verifikasi data</p>
+
+                        <p>
+                            Sedang dalam proses verifikasi data
+                        </p>
+
                     @elseif($d->status == 'diproses')
-                        <p>Pengajuan diterima, sedang diproses</p>
+
+                        <p>
+                            Pengajuan diterima, sedang diproses
+                        </p>
+
                     @elseif($d->status == 'selesai')
-                        <p>Dokumen sudah selesai dan bisa diambil</p>
+
+                        <p>
+                            Dokumen sudah selesai dan bisa diambil
+                        </p>
+
                     @else
-                        <p>Pengajuan ditolak, periksa kembali data</p>
+
+                        <p>
+                            Pengajuan ditolak, periksa kembali data
+                        </p>
+
+                        @if($d->catatan_admin)
+
+                            <p style="color:red;">
+                                <b>Catatan Admin:</b>
+                                {{ $d->catatan_admin }}
+                            </p>
+
+                        @endif
+
+                        <a href="/pengajuan/edit/{{ $d->id }}"
+                           class="btn btn-warning btn-sm mt-2">
+
+                            Edit Pengajuan
+
+                        </a>
+
                     @endif
 
                 </div>
@@ -134,27 +194,48 @@
                     </span>
 
                     @if($p->status == 'pending')
-                        <span class="badge badge-verifikasi">Sedang Verifikasi</span>
+
+                        <span class="badge badge-verifikasi">
+                            Sedang Verifikasi
+                        </span>
+
                     @elseif($p->status == 'diproses')
-                        <span class="badge badge-proses">Dalam Proses</span>
+
+                        <span class="badge badge-proses">
+                            Dalam Proses
+                        </span>
+
                     @elseif($p->status == 'selesai')
-                        <span class="badge badge-selesai">Selesai</span>
+
+                        <span class="badge badge-selesai">
+                            Selesai
+                        </span>
+
                     @else
-                        <span class="badge badge-ditolak">Ditolak</span>
+
+                        <span class="badge badge-ditolak">
+                            Ditolak
+                        </span>
+
                     @endif
 
                 </div>
 
-                <h5 class="fw-bold">Perpindahan Penduduk</h5>
+                <h5 class="fw-bold">
+                    Perpindahan Penduduk
+                </h5>
 
-                <p class="mb-1">Nama: {{ $p->nama }}</p>
+                <p class="mb-1">
+                    Nama: {{ $p->nama }}
+                </p>
 
                 <p class="mb-1">
                     Tujuan: {{ $p->kabupaten_tujuan }}
                 </p>
 
                 <p class="text-muted">
-                    Tanggal: {{ $p->created_at->format('d F Y') }}
+                    Tanggal:
+                    {{ $p->created_at->format('d F Y') }}
                 </p>
 
             </div>
@@ -166,13 +247,45 @@
                     <b>Keterangan:</b>
 
                     @if($p->status == 'pending')
-                        <p>Permohonan sedang diverifikasi</p>
+
+                        <p>
+                            Permohonan sedang diverifikasi
+                        </p>
+
                     @elseif($p->status == 'diproses')
-                        <p>Permohonan perpindahan sedang diproses</p>
+
+                        <p>
+                            Permohonan perpindahan sedang diproses
+                        </p>
+
                     @elseif($p->status == 'selesai')
-                        <p>Perpindahan telah disetujui dan selesai</p>
+
+                        <p>
+                            Perpindahan telah disetujui dan selesai
+                        </p>
+
                     @else
-                        <p>Permohonan perpindahan ditolak</p>
+
+                        <p>
+                            Permohonan perpindahan ditolak
+                        </p>
+
+                        @if($p->catatan_admin)
+
+                            <p style="color:red;">
+                                <b>Catatan Admin:</b>
+                                {{ $p->catatan_admin }}
+                            </p>
+
+                        @endif
+
+                        <a href="/perpindahan/edit/{{ $p->id }}"
+                           class="btn btn-warning btn-sm mt-2">
+
+                            Edit Data
+
+                        </a>
+
                     @endif
 
                 </div>
@@ -193,18 +306,31 @@
 
             <div class="status-item">
                 <span class="icon">🟡</span>
+
                 <div>
                     <b>Dalam Proses</b>
-                    <p>Pengajuan diterima dan sedang diproses</p>
+
+                    <p>
+                        Pengajuan diterima dan sedang diproses
+                    </p>
                 </div>
+
             </div>
 
             <div class="status-item">
+
                 <span class="icon">🟢</span>
+
                 <div>
+
                     <b>Selesai</b>
-                    <p>Dokumen siap diambil di Kantor Desa</p>
+
+                    <p>
+                        Dokumen siap diambil di Kantor Desa
+                    </p>
+
                 </div>
+
             </div>
 
         </div>
@@ -212,19 +338,35 @@
         <div class="col-md-6">
 
             <div class="status-item">
+
                 <span class="icon">🔵</span>
+
                 <div>
+
                     <b>Sedang Verifikasi</b>
-                    <p>Dalam tahap verifikasi data</p>
+
+                    <p>
+                        Dalam tahap verifikasi data
+                    </p>
+
                 </div>
+
             </div>
 
             <div class="status-item">
+
                 <span class="icon">🔴</span>
+
                 <div>
+
                     <b>Ditolak</b>
-                    <p>Pengajuan ditolak, silakan cek keterangan</p>
+
+                    <p>
+                        Pengajuan ditolak, silakan cek keterangan
+                    </p>
+
                 </div>
+
             </div>
 
         </div>

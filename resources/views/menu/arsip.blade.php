@@ -89,7 +89,7 @@
                 👁 Lihat
             </a>
 
-            <a href="#">
+            <a href="/arsip/pengajuan/{{ $item->id }}/download">
                 ⬇ Unduh
             </a>
 
@@ -149,7 +149,7 @@
                 👁 Lihat
             </a>
 
-            <a href="#">
+            <a href="/arsip/perpindahan/{{ $item->id }}/download">
                 ⬇ Unduh
             </a>
 
