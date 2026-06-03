@@ -1,3 +1,4 @@
+@section('title', 'Arsip Dokumen')
 <x-app-layout>
 
 <div class="arsip-container">

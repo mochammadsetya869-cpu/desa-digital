@@ -1,3 +1,4 @@
+@section('title', 'Status Pengajuan')
 <x-app-layout>
 
 <a href="/dashboard" class="kembali-link">

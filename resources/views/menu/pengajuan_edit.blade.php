@@ -1,3 +1,4 @@
+@section('title', 'Edit Pengajuan')
 <x-app-layout>
 
 <div class="form-container">

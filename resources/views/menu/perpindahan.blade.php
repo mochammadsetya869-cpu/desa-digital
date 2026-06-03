@@ -1,3 +1,4 @@
+@section('title', 'Perpindahan Penduduk')
 <x-app-layout>
 
 <div class="perpindahan-page">

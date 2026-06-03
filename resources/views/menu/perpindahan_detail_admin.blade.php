@@ -1,6 +1,12 @@
+@section('title', 'Detail Perpindahan Penduduk')
 <x-app-layout>
 
 <div class="detail-container">
+
+
+        <a href="/perpindahan" class="detail-kembali">
+                ← Kembali ke Perpendahan Penduduk
+            </a>
 
     <h1>Detail Perpindahan Penduduk</h1>
 

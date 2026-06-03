@@ -1,3 +1,4 @@
+@section('title', 'Pengajuan Surat Admin')
 <x-app-layout>
 
 <div class="pengajuan-admin-page">

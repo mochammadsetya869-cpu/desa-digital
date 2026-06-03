@@ -1,3 +1,4 @@
+@section('title', 'Data Penduduk')
 <x-app-layout>
 
 <div class="data-wrapper">

@@ -1,3 +1,4 @@
+@section('title', 'Profil Desa')
 <x-app-layout>
 <a href="/dashboard" class="kembali-link">
     ← Kembali ke Beranda

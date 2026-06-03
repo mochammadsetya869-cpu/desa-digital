@@ -1,3 +1,4 @@
+@section('title', 'Edit Profil Desa')
 <x-app-layout>
 
 <div class="profil-container">

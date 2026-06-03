@@ -1,3 +1,4 @@
+@section('title', 'Edit Data Penduduk')
 <x-app-layout>
 
 <div class="container mt-4">

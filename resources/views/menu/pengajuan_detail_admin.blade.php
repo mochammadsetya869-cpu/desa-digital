@@ -1,3 +1,4 @@
+@section('title', 'Detail Pengajuan')
 <x-app-layout>
 
 <div class="detail-container">

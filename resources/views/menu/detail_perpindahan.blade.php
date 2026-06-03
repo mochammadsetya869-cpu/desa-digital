@@ -13,7 +13,7 @@
     <div class="detail-card">
 
         <div class="detail-item">
-            <span class="detail-label">Nama</span>
+            <span class="detail-label">Nama Lengkap</span>
             <span class="detail-value">{{ $data->nama }}</span>
         </div>
 
@@ -23,18 +23,58 @@
         </div>
 
         <div class="detail-item">
+            <span class="detail-label">Jenis Kelamin</span>
+            <span class="detail-value">{{ $data->jenis_kelamin }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Tanggal Lahir</span>
+            <span class="detail-value">{{ $data->tanggal_lahir }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Jumlah Anggota</span>
+            <span class="detail-value">{{ $data->jumlah_anggota }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Alamat Asal</span>
+            <span class="detail-value">{{ $data->alamat_asal }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Alamat Tujuan</span>
+            <span class="detail-value">{{ $data->alamat_tujuan }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Provinsi Tujuan</span>
+            <span class="detail-value">{{ $data->provinsi_tujuan }}</span>
+        </div>
+
+        <div class="detail-item">
             <span class="detail-label">Kabupaten Tujuan</span>
-            <span class="detail-value">
-                {{ $data->kabupaten_tujuan }}
-            </span>
+            <span class="detail-value">{{ $data->kabupaten_tujuan }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Kecamatan Tujuan</span>
+            <span class="detail-value">{{ $data->kecamatan_tujuan }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Desa Tujuan</span>
+            <span class="detail-value">{{ $data->desa_tujuan }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Alasan Pindah</span>
+            <span class="detail-value">{{ $data->alasan_pindah }}</span>
         </div>
 
         <div class="detail-item">
             <span class="detail-label">Status</span>
-
-            <span class="detail-status">
-                {{ $data->status }}
-            </span>
+            <span class="detail-status">{{ $data->status }}</span>
         </div>
 
     </div>

@@ -1,3 +1,4 @@
+@section('title', 'Dashboard')
 <x-app-layout>
 
 @if(session('error'))

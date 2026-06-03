@@ -1,3 +1,4 @@
+@section('title', 'Perpindahan Penduduk Admin')
 <x-app-layout>
 
 <div class="pengajuan-admin-page">
@@ -62,20 +63,18 @@
 
                     </td>
 
-                    <td class="aksi">
+                   <td class="aksi">
+
+                        <a href="/perpindahan/detail/{{ $p->id }}"
+                        class="btn-detail">
+                            Detail
+                        </a>
 
                         @if($p->status == 'pending')
 
-                            <a href="/perpindahan/detail/{{ $p->id }}"
-                               class="btn-selesai">
-
-                                Detail
-
-                            </a>
-
                             <form action="{{ route('perpindahan.setujui', $p->id) }}"
-                                  method="POST"
-                                  style="display:inline;">
+                                method="POST"
+                                style="display:inline;">
 
                                 @csrf
 
@@ -86,15 +85,15 @@
                             </form>
 
                             <form action="/perpindahan/tolak/{{ $p->id }}"
-                                  method="POST"
-                                  style="display:inline;">
+                                method="POST"
+                                style="display:inline;">
 
                                 @csrf
 
                                 <input type="text"
-                                       name="catatan_admin"
-                                       placeholder="Catatan admin"
-                                       style="padding:8px;border-radius:8px;border:1px solid #ccc;">
+                                    name="catatan_admin"
+                                    placeholder="Catatan admin"
+                                    style="padding:8px;border-radius:8px;border:1px solid #ccc;">
 
                                 <button class="btn-tolak">
                                     Tolak
@@ -105,8 +104,8 @@
                         @elseif($p->status == 'diproses')
 
                             <form action="{{ route('perpindahan.selesai', $p->id) }}"
-                                  method="POST"
-                                  style="display:inline;">
+                                method="POST"
+                                style="display:inline;">
 
                                 @csrf
 
