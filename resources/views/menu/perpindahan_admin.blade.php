@@ -78,7 +78,8 @@
 
                                 @csrf
 
-                                <button class="btn-setuju">
+                                <button class="btn-setuju"
+                                        onclick="return confirm('Yakin ingin menyetujui permohonan perpindahan ini?')">
                                     Setujui
                                 </button>
 
@@ -95,7 +96,8 @@
                                     placeholder="Catatan admin"
                                     style="padding:8px;border-radius:8px;border:1px solid #ccc;">
 
-                                <button class="btn-tolak">
+                                <button class="btn-tolak"
+                                        onclick="return confirm('Yakin ingin menolak permohonan perpindahan ini?')">
                                     Tolak
                                 </button>
 
@@ -109,7 +111,8 @@
 
                                 @csrf
 
-                                <button class="btn-selesai">
+                                <button class="btn-selesai"
+                                        onclick="return confirm('Tandai permohonan perpindahan ini sebagai selesai?')">
                                     Selesai
                                 </button>
 

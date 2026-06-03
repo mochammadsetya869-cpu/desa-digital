@@ -2,8 +2,8 @@
 
 <div class="detail-container">
 
-    <a href="/pengajuan" class="detail-kembali">
-        ← Kembali ke Data Pengajuan
+    <a href="/arsip" class="detail-kembali">
+        ← Kembali ke Data Arsip
     </a>
 
     <h1 class="detail-title">

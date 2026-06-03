@@ -24,6 +24,16 @@ class PerpindahanPendudukController extends Controller
 
     public function store(Request $request)
     {
+
+            $request->validate(
+            [
+                'nik' => 'required|digits:16',
+            ],
+            [
+                'nik.required' => 'NIK wajib diisi',
+                'nik.digits' => 'NIK harus terdiri dari 16 digit',
+            ]);
+
         PerpindahanPenduduk::create([
 
             'user_id' => Auth::id(),
@@ -97,8 +107,14 @@ class PerpindahanPendudukController extends Controller
         return redirect('/perpindahan');
     }
 
+
     public function edit($id)
     {
+        if(Auth::user()->role == 'admin'){
+            return redirect('/dashboard')
+                ->with('error','Admin tidak dapat mengedit data perpindahan');
+        }
+
         $data = PerpindahanPenduduk::findOrFail($id);
 
         return view('menu.perpindahan_edit', compact('data'));

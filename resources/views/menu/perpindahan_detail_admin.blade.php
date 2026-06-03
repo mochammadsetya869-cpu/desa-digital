@@ -8,33 +8,79 @@
                 ← Kembali ke Perpendahan Penduduk
             </a>
 
-    <h1>Detail Perpindahan Penduduk</h1>
+    <h1 class="detail-title">
+        Detail Perpindahan Penduduk
+    </h1>
 
     <div class="detail-card">
 
-        <p><b>Nama:</b> {{ $data->nama }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Nama Lengkap</span>
+            <span class="detail-value">{{ $data->nama }}</span>
+        </div>
 
-        <p><b>NIK:</b> {{ $data->nik }}</p>
+        <div class="detail-item">
+            <span class="detail-label">NIK</span>
+            <span class="detail-value">{{ $data->nik }}</span>
+        </div>
 
-        <p><b>Jenis Kelamin:</b> {{ $data->jenis_kelamin }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Jenis Kelamin</span>
+            <span class="detail-value">{{ $data->jenis_kelamin }}</span>
+        </div>
 
-        <p><b>Tanggal Lahir:</b> {{ $data->tanggal_lahir }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Tanggal Lahir</span>
+            <span class="detail-value">{{ $data->tanggal_lahir }}</span>
+        </div>
 
-        <p><b>Jumlah Anggota:</b> {{ $data->jumlah_anggota }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Jumlah Anggota</span>
+            <span class="detail-value">{{ $data->jumlah_anggota }}</span>
+        </div>
 
-        <p><b>Alamat Asal:</b> {{ $data->alamat_asal }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Alamat Asal</span>
+            <span class="detail-value">{{ $data->alamat_asal }}</span>
+        </div>
 
-        <p><b>Alamat Tujuan:</b> {{ $data->alamat_tujuan }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Alamat Tujuan</span>
+            <span class="detail-value">{{ $data->alamat_tujuan }}</span>
+        </div>
 
-        <p><b>Provinsi Tujuan:</b> {{ $data->provinsi_tujuan }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Provinsi Tujuan</span>
+            <span class="detail-value">{{ $data->provinsi_tujuan }}</span>
+        </div>
 
-        <p><b>Kabupaten Tujuan:</b> {{ $data->kabupaten_tujuan }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Kabupaten Tujuan</span>
+            <span class="detail-value">{{ $data->kabupaten_tujuan }}</span>
+        </div>
 
-        <p><b>Kecamatan Tujuan:</b> {{ $data->kecamatan_tujuan }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Kecamatan Tujuan</span>
+            <span class="detail-value">{{ $data->kecamatan_tujuan }}</span>
+        </div>
 
-        <p><b>Desa Tujuan:</b> {{ $data->desa_tujuan }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Desa Tujuan</span>
+            <span class="detail-value">{{ $data->desa_tujuan }}</span>
+        </div>
 
-        <p><b>Alasan Pindah:</b> {{ $data->alasan_pindah }}</p>
+        <div class="detail-item">
+            <span class="detail-label">Alasan Pindah</span>
+            <span class="detail-value">{{ $data->alasan_pindah }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">Status Pengajuan</span>
+
+            <span class="detail-status">
+                {{ $data->status }}
+            </span>
+        </div>
 
     </div>
 

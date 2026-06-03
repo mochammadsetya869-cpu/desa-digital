@@ -1,10 +1,25 @@
 @section('title', 'Dashboard')
 <x-app-layout>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @if(session('error'))
-    <div style="background:red; color:white; padding:10px; border-radius:5px; margin:10px;">
-        {{ session('error') }}
-    </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Akses Ditolak',
+        text: '{{ session('error') }}',
+        confirmButtonText: 'OK'
+    });
+
+});
+
+</script>
+
 @endif
 
 <!-- MENU -->

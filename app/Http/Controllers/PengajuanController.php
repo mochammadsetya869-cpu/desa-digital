@@ -26,6 +26,15 @@ public function index(Request $request)
         
         public function store(Request $request)
     {
+        $request->validate(
+        [
+            'nik' => 'required|digits:16',
+        ],
+        [
+            'nik.required' => 'NIK wajib diisi',
+            'nik.digits' => 'NIK harus terdiri dari 16 digit',
+        ]);
+
         $data = new Pengajuan();
 
         $data->user_id = Auth::id();
@@ -80,6 +89,11 @@ public function index(Request $request)
 
     public function edit($id)
     {
+        if(Auth::user()->role == 'admin'){
+            return redirect('/dashboard')
+                ->with('error','Admin tidak dapat mengedit pengajuan warga');
+        }
+
         $data = Pengajuan::findOrFail($id);
 
         return view('menu.pengajuan_edit', compact('data'));

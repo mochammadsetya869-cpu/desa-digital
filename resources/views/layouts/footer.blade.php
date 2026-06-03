@@ -22,8 +22,6 @@
             <ul>
                 <li>Pengajuan Surat Online</li>
                 <li>Informasi Kependudukan</li>
-                <li>Pengaduan Masyarakat</li>
-                <li>Transparansi Anggaran</li>
             </ul>
         </div>
 

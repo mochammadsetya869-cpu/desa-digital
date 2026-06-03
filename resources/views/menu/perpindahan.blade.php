@@ -33,7 +33,17 @@
                     <input
                         type="text"
                         name="nik"
-                        placeholder="Masukkan 16 digit NIK">
+                        placeholder="Masukkan 16 digit NIK"
+                        maxlength="16"
+                        pattern="[0-9]{16}"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                        required>
+
+                    @error('nik')
+                        <small style="color:red;display:block;margin-top:5px;">
+                            {{ $message }}
+                        </small>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -120,7 +130,7 @@
                         <input
                             type="text"
                             name="kabupaten_tujuan"
-                            placeholder="Contoh: Bandung">
+                            placeholder="Contoh: Indramayu">
                     </div>
 
                 </div>
@@ -133,7 +143,7 @@
                         <input
                             type="text"
                             name="kecamatan_tujuan"
-                            placeholder="Contoh: Bandung Wetan">
+                            placeholder="Contoh: Widasari">
                     </div>
 
                     <div class="mb-4">
@@ -142,7 +152,7 @@
                         <input
                             type="text"
                             name="desa_tujuan"
-                            placeholder="Contoh: Cibeunying">
+                            placeholder="Contoh: Leuwigede">
                     </div>
 
                 </div>
@@ -177,7 +187,9 @@
 
                 <div class="btn-area">
 
-                    <button type="submit" class="btn-kirim">
+                    <button type="submit"
+                            class="btn-submit"
+                            onclick="this.disabled=true;this.innerHTML='Mengirim...';this.form.submit();">
                         Ajukan Permohonan Pindah
                     </button>
 

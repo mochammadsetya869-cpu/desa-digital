@@ -1,4 +1,4 @@
-@section('title', 'Status Pengajuan')
+@section('title', 'Status Pengajuan Surat dan Perpindahan Penduduk')
 <x-app-layout>
 
 <a href="/dashboard" class="kembali-link">
@@ -157,10 +157,9 @@
                         @endif
 
                         <a href="/pengajuan/edit/{{ $d->id }}"
-                           class="btn btn-warning btn-sm mt-2">
-
+                            class="btn-edit-warga">
+                            <i class="bi bi-pencil-square"></i>
                             Edit Pengajuan
-
                         </a>
 
                     @endif
@@ -281,10 +280,9 @@
                         @endif
 
                         <a href="/perpindahan/edit/{{ $p->id }}"
-                           class="btn btn-warning btn-sm mt-2">
-
-                            Edit Data
-
+                            class="btn-edit-warga">
+                            <i class="bi bi-pencil-square"></i>
+                                Edit Perpindahan
                         </a>
 
                     @endif

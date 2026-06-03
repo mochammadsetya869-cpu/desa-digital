@@ -71,8 +71,10 @@
                                 Detail
                             </a>
 
-                            <a href="/pengajuan/setuju/{{ $p->id }}" class="btn-setuju">
-                                Setujui
+                            <a href="/pengajuan/setuju/{{ $p->id }}"
+                                class="btn-setuju"
+                                onclick="return confirm('Yakin ingin menyetujui pengajuan ini?')">
+                                    Setujui
                             </a>
 
                             <form action="/pengajuan/tolak/{{ $p->id }}"
@@ -86,7 +88,8 @@
                                     placeholder="Catatan admin"
                                     style="padding:8px;border-radius:8px;border:1px solid #ccc;">
 
-                                <button class="btn-tolak">
+                                <button class="btn-tolak"
+                                        onclick="return confirm('Yakin ingin menolak pengajuan ini?')">
                                     Tolak
                                 </button>
 
@@ -94,8 +97,10 @@
 
                         @elseif($p->status == 'diproses')
 
-                            <a href="/pengajuan/selesai/{{ $p->id }}" class="btn-selesai">
-                                Selesai
+                            <a href="/pengajuan/selesai/{{ $p->id }}"
+                                class="btn-selesai"
+                                onclick="return confirm('Tandai pengajuan ini sebagai selesai?')">
+                                    Selesai
                             </a>
 
                         @elseif($p->status == 'selesai')

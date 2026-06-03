@@ -90,10 +90,10 @@
                 👁 Lihat
             </a>
 
-            <a href="/arsip/pengajuan/{{ $item->id }}/download">
-                ⬇ Unduh
+            <a href="#"
+                onclick="downloadPengajuan('{{ $item->id }}')">
+                    ⬇ Unduh
             </a>
-
         </div>
 
     </div>
@@ -150,8 +150,9 @@
                 👁 Lihat
             </a>
 
-            <a href="/arsip/perpindahan/{{ $item->id }}/download">
-                ⬇ Unduh
+            <a href="#"
+                onclick="downloadPerpindahan('{{ $item->id }}')">
+                    ⬇ Unduh
             </a>
 
         </div>
@@ -181,5 +182,55 @@
     </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+function downloadPengajuan(id){
+
+    Swal.fire({
+        title: 'Download Arsip',
+        text: 'Apakah Anda ingin mengunduh dokumen ini?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Download',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+
+        if(result.isConfirmed){
+
+            window.location.href =
+            '/arsip/pengajuan/' + id + '/download';
+
+        }
+
+    });
+
+}
+
+function downloadPerpindahan(id){
+
+    Swal.fire({
+        title: 'Download Arsip',
+        text: 'Apakah Anda ingin mengunduh dokumen ini?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Download',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+
+        if(result.isConfirmed){
+
+            window.location.href =
+            '/arsip/perpindahan/' + id + '/download';
+
+        }
+
+    });
+
+}
+
+</script>
 
 </x-app-layout>

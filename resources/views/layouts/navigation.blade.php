@@ -27,11 +27,23 @@
                             {{ auth()->user()->name }}
                         </div>
 
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form id="logout-form"
+                            method="POST"
+                            action="{{ route('logout') }}">
+
                             @csrf
-                            <button type="submit" class="dropdown-item Logout-btn">
-                                <i class ="bi bi-box-arrow-right"></i>Logout</button>
+
+                            <button type="button"
+                                    class="dropdown-item Logout-btn"
+                                    onclick="confirmLogout()">
+
+                                <i class="bi bi-box-arrow-right"></i>
+                                Logout
+
+                            </button>
+
                         </form>
+
                     @else
                         <a href="{{ route('login') }}" class="dropdown-item">Login</a>
                         <a href="{{ route('register') }}" class="dropdown-item">Register</a>
@@ -45,10 +57,36 @@
 
 </nav>
 
+
 <!-- SCRIPT -->
 <script>
 function toggleMenu() {
     let menu = document.getElementById("dropdownMenu");
     menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
+</script>
+
+<script>
+
+function confirmLogout(){
+
+    Swal.fire({
+        title: 'Konfirmasi Logout',
+        text: 'Apakah Anda yakin ingin keluar dari sistem?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Logout',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+
+        if(result.isConfirmed){
+
+            document.getElementById('logout-form').submit();
+
+        }
+
+    });
+
+}
+
 </script>

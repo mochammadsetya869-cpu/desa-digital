@@ -20,7 +20,11 @@
 
             <input type="password" name="password" placeholder="Masukkan password" required>
 
-            <button type="submit" class="btn-login">Masuk</button>
+            <button type="submit"
+                    class="btn-login"
+                    onclick="this.disabled=true; this.innerHTML='Sedang Masuk...'; this.form.submit();">
+                Masuk
+            </button>
         </form>
 
         <div class="auth-link">
@@ -31,5 +35,26 @@
     </div>
 
 </div>
+
+@if ($errors->any())
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Gagal',
+        text: 'Email atau password salah',
+        confirmButtonText: 'OK'
+    });
+
+});
+
+</script>
+
+@endif
 
 </x-app-layout>
