@@ -70,40 +70,7 @@
                             Detail
                         </a>
 
-                        @if($p->status == 'pending')
-
-                            <form action="{{ route('perpindahan.setujui', $p->id) }}"
-                                method="POST"
-                                style="display:inline;">
-
-                                @csrf
-
-                                <button class="btn-setuju"
-                                        onclick="return confirm('Yakin ingin menyetujui permohonan perpindahan ini?')">
-                                    Setujui
-                                </button>
-
-                            </form>
-
-                            <form action="/perpindahan/tolak/{{ $p->id }}"
-                                method="POST"
-                                style="display:inline;">
-
-                                @csrf
-
-                                <input type="text"
-                                    name="catatan_admin"
-                                    placeholder="Catatan admin"
-                                    style="padding:8px;border-radius:8px;border:1px solid #ccc;">
-
-                                <button class="btn-tolak"
-                                        onclick="return confirm('Yakin ingin menolak permohonan perpindahan ini?')">
-                                    Tolak
-                                </button>
-
-                            </form>
-
-                        @elseif($p->status == 'diproses')
+                        @if($p->status == 'diproses')
 
                             <form action="{{ route('perpindahan.selesai', $p->id) }}"
                                 method="POST"
@@ -113,7 +80,9 @@
 
                                 <button class="btn-selesai"
                                         onclick="return confirm('Tandai permohonan perpindahan ini sebagai selesai?')">
+
                                     Selesai
+
                                 </button>
 
                             </form>

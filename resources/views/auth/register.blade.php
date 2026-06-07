@@ -1,3 +1,4 @@
+@section('title', 'Register')
 <x-app-layout>
 
 <!-- CONTENT -->

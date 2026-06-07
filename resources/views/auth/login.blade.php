@@ -1,3 +1,4 @@
+@section('title', 'Login')
 <x-app-layout>
 
 <!-- CONTENT -->

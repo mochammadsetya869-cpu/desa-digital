@@ -86,9 +86,26 @@
 
     <br>
 
-    <form action="/perpindahan/tolak/{{ $data->id }}" method="POST">
+    @if($data->status == 'pending')
+
+    <form action="{{ route('perpindahan.setujui', $data->id) }}"
+        method="POST">
 
         @csrf
+
+        <button class="btn-setuju"
+                onclick="return confirm('Yakin ingin menyetujui permohonan perpindahan ini?')">
+
+            Setujui
+
+        </button>
+
+    </form>
+
+    <br><br>
+
+    <form action="/perpindahan/tolak/{{ $data->id }}"
+        method="POST">
 
         <textarea
             name="catatan_admin"
@@ -104,7 +121,8 @@
         </button>
 
     </form>
-
+    
+         @endif
 </div>
 
 </x-app-layout>

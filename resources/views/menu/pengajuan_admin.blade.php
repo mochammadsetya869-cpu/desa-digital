@@ -63,44 +63,21 @@
 
                     </td>
 
-                    <td class="aksi">
+                   <td class="aksi">
 
-                        @if($p->status == 'pending')
+                        <a href="/pengajuan/detail/{{ $p->id }}"
+                        class="btn-detail">
+                            Detail
+                        </a>
 
-                            <a href="/pengajuan/detail/{{ $p->id }}" class="btn-selesai">
-                                Detail
-                            </a>
-
-                            <a href="/pengajuan/setuju/{{ $p->id }}"
-                                class="btn-setuju"
-                                onclick="return confirm('Yakin ingin menyetujui pengajuan ini?')">
-                                    Setujui
-                            </a>
-
-                            <form action="/pengajuan/tolak/{{ $p->id }}"
-                                method="POST"
-                                style="display:inline;">
-
-                                @csrf
-
-                                <input type="text"
-                                    name="catatan_admin"
-                                    placeholder="Catatan admin"
-                                    style="padding:8px;border-radius:8px;border:1px solid #ccc;">
-
-                                <button class="btn-tolak"
-                                        onclick="return confirm('Yakin ingin menolak pengajuan ini?')">
-                                    Tolak
-                                </button>
-
-                            </form>
-
-                        @elseif($p->status == 'diproses')
+                        @if($p->status == 'diproses')
 
                             <a href="/pengajuan/selesai/{{ $p->id }}"
                                 class="btn-selesai"
                                 onclick="return confirm('Tandai pengajuan ini sebagai selesai?')">
-                                    Selesai
+
+                                Selesai
+
                             </a>
 
                         @elseif($p->status == 'selesai')

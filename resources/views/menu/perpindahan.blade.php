@@ -188,9 +188,8 @@
                 <div class="btn-area">
 
                     <button type="submit"
-                            class="btn-submit"
-                            onclick="this.disabled=true;this.innerHTML='Mengirim...';this.form.submit();">
-                        Ajukan Permohonan Pindah
+                            class="btn-simpan">
+                        Ajukan Pengajuan
                     </button>
 
                     <a href="/dashboard" class="btn-batal">
