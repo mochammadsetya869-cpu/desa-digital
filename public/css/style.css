@@ -1880,6 +1880,30 @@ textarea.form-control{
     font-weight: 600;
 }
 
+.btn-detail{
+
+    background:#3b82f6;
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:8px;
+
+    text-decoration:none;
+
+    display:inline-block;
+
+}
+
+
+
+.btn-detail:hover{
+
+    background:#2563eb;
+
+}
+
 /* ===================================== */
 /* edit */
 /* ===================================== */
